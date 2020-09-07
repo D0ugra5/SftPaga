@@ -1,7 +1,110 @@
+
+<!--
 <h1>Categorias</h1>
 
 {{#each categorias}}
 <a href="/categorias/{{_id}}"><h4>{{nome}}</h4></a>
+
+{{else}}
+<h5>nenhuma Cateogria Criada</h5>
+<a href="/admin/categorias"><button  class="btn btn-success"></button></a>
+
+{{/each}}
+-->
+<style> 
+        .espacoTopo{
+            margin-top: 6%;
+        }
+
+                hr {
+
+      float: left;
+
+      border-color: rgb(218, 218, 218);
+      box-sizing: border-box;
+      width: 80%;
+    }
+
+
+
+
+
+        .tabela-carros tr td{
+            padding: 20px;
+
+        }
+
+        .tabela-carros{
+            cursor: pointer;
+        }
+
+
+
+        .tabela-carros tr:nth-child(2n){
+            background-color: #c4ffbc;
+        }
+
+
+        .tabela-carros tr:hover{
+            background-color: rgb(88, 255, 241);
+        }
+
+        .tabela-carros tr:nth-child(2n+1){
+            background-color: rgb(183, 226, 193);
+        }
+
+
+        .tabela-carros tr:hover{
+            background-color: rgb(97, 221, 80);
+        }
+
+
+
+
+
+
+</style>
+<div class="espacoTopo">
+<h1>Categorias</h1>
+<hr>
+</hr>
+<br>
+<br>
+</div>
+{{#each categorias}}
+  <table  class="tabela-carros" cellspacing="0" >
+
+
+
+
+
+
+          <tr>
+            <td>
+
+               <a href="/categorias/{{_id}}"><h4>{{nome}}</h4></a>
+            </td>
+            <td>
+
+            </td>
+                        <td>
+
+            </td>
+                        <td>
+
+            </td>
+                        <td>
+
+            </td>
+        </tr>
+
+
+    </table>
+
+
+
+
+
 
 {{else}}
 <h5>nenhuma Cateogria Criada</h5>
