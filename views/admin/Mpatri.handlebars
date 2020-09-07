@@ -1,0 +1,36 @@
+
+<a href="/admin/patrocinador">
+<button class="btn btn-success mt-4">Novo Patrocinador</button>
+</a>
+{{#each patri}}
+
+<div class="card mt-4 border border-success ">
+    <div class="card-body mt-4 ">
+         
+        <h4>Patrocinador :{{nome}}</h4>
+        <p>Descrição:{{descPt}}</p>
+       <div class="card-body">
+     
+    <img  src="/upload/{{imgPt}}" width="250" height="250"  class="img-thumbnail rounded float-right">
+    
+  </div>  
+
+</div>
+   
+        
+    
+</div>
+
+
+
+{{else}}
+<div class="card">
+<h1>Nenhum Patrocinador Cadastrado</h1>
+
+<a href="/admin/patrocinador">
+<button class="btn btn-success mt-4">Cadastrar</button>
+</a>
+</div>
+
+
+{{/each}}

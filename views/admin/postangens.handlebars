@@ -1,0 +1,35 @@
+<h2>Lista de Produtos</h2>
+<hr>
+
+<a href="/admin/postagens/add"><button class="btn btn-success">Nova Produto </button></a>
+{{#each postagens}}
+
+<div class="card mt-4 border border-success ">
+    <div class="card-body mt-4 ">
+         
+        <h4>Produto :{{titulo}}</h4>
+        <p>Descrição do Produto: {{descricao}}</p>
+        <small>Data Que Foi Inserido: {{data}}</small><br>
+        <small>Categoria Produto: {{categoria.nome}}</small><br>
+       <div class="card-body">
+     
+    <img  src="/upload/{{nomeImagem}}" width="250" height="250"  class="img-thumbnail rounded float-right">
+    
+  </div>  
+<a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success mt-2  col-5">Editar Produto</button></a>
+         <a href="/admin/postagens/deletar/{{_id}}"><button class="btn btn-danger mt-2 col-5 ">Deletar Produto</button></a>
+    
+</div>
+   
+        
+    
+</div>
+{{else}}
+<p>Nenhuma Produto registrado!</p>
+{{/each}}
+
+
+
+
+
+

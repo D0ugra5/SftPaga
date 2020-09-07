@@ -1,0 +1,116 @@
+
+
+
+{{#if products}}
+
+<div class="card">
+    <h1>Carrinho : </h1>
+    <div class="card-body">
+</div>
+
+<ul class="list-group">
+  {{#each products}}
+
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+   Produto : {{this.item.titulo}}
+
+   
+
+    <span class="badge badge-primary badge-pill">R$: {{this.preco}}</span>
+    <span class="badge badge-primary badge-pill">Quantidade: {{this.qty}}</span>
+   <a href="/remove/{{this.item._id}}"> <button class="btn btn-danger">Remover</button></a>
+  
+  </li>
+ 
+  {{/each}}
+
+</ul>
+
+    </div>
+
+
+</div>
+</div>
+<div class="card">
+
+
+
+    <div class="card-body">
+
+  
+        <strong class="ml-4 mt-3">Total:{{totalprice}}</strong>
+    
+        {{#if user}}
+        <a href="/cep">
+ <button class="btn btn-success float-right mr-3">Comprar</button>
+ </a>
+
+ {{else}}
+<a href="/usuarios/login">
+ <button class="btn btn-success float-right mr-3">Para Continuar Faça o Login </button>
+ </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+{{else}}
+
+<hr>
+
+
+
+<div class="row">
+    <div class="">
+        <h2>Não ha Itens No Carrinho</h2>
+    </div>
+</div>
+
+
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

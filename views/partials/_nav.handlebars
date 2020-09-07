@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <!-- Just an image -->
+
+   <a href="/" class="navbar-brand">ACPCCP</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">{{initalizePassport}} <span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/produto">Loja <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/categorias">Categorias <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href=" /patrocinadores">Patrocinadores <span class="sr-only">(current)</span></a>
+      </li>
+     
+          <li class="nav-item active">
+        <a class="nav-link" href="/sobrenos">Sobre Nos <span class="sr-only">(current)</span></a>
+      </li>
+      {{#if user }}
+      
+      <li class="nav-item active">
+        <a class="nav-link" href="/usuarios/logout">Sair <span class="sr-only">(current)</span></a>
+      </li>
+      <a class="nav-link" href="/perfil"> {{NomeCliente}} <span class="sr-only">(current)</span></a>
+      {{else}}
+      <li class="nav-item active">
+        <a class="nav-link" href="/usuarios/login">Login <span class="sr-only">(current)</span></a>
+      </li>
+      
+      {{/if}}
+
+      {{#if  Admintrador  }}
+      . <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Adminisitração
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a href="/admin/postagens" class="dropdown-item" href="#">Produto</a>
+          <a class="dropdown-item" href="/admin/categorias">Categoria</a>
+          <a class="dropdown-item" href="/vendas">Vendas</a>
+          <a class="dropdown-item" href="/admin/mostra">Cadastrar Patrocinador</a>
+
+
+       
+        </div>
+      </li>
+
+
+      {{else}}
+
+
+
+      {{/if}}
+
+
+    </ul>
+
+    </form>
+  </div>
+  <div class="  mr-3">
+   <a  href="/shopping-cart">
+    <img src="/img/carrinho-de-compras.png" width="30" height="30" alt="logo"  >
+        <span class="  text-light ">{{session.cart.totalQty}}</span>
+  </a>
+</div>
+</nav>
