@@ -67,13 +67,17 @@
 
 
     </ul>
-
+<form class="form-inline" action="/buscar" method="POST">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="pesquisar">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </form>
     </form>
   </div>
-  <div class="  mr-3">
+  <div class=" ml-4 mr-3">
    <a  href="/shopping-cart">
     <img src="/img/carrinho-de-compras.png" width="30" height="30" alt="logo"  >
         <span class="  text-light ">{{session.cart.totalQty}}</span>
   </a>
 </div>
+
 </nav>
