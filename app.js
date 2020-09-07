@@ -740,7 +740,7 @@ app.get("/remove/:id", (req, res, next) => {
 app.post("/resposta", (req, res) => {
 
     var id = req.query.id
-
+ console.log('CREATED')
     setTimeout(() => {
         var filtro = {
             "order.id": id
