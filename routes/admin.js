@@ -38,7 +38,7 @@ router.get('/post',eAdmin, (req, res) => {
 
 })
 //rota categoria 
-router.get('/categorias',eAdmin, (req, res) => {
+router.get('/categorias', (req, res) => {
   Categoria.find().sort({ date: 'desc' }).lean().then((categorias) => {
 
     res.render('admin/categorias', { categorias: categorias })
@@ -52,12 +52,12 @@ router.get('/categorias',eAdmin, (req, res) => {
 
 //rota formulario categoria 
 
-router.get('/categorias/add',eAdmin, (req, res) => {
+router.get('/categorias/add', (req, res) => {
   res.render('admin/addcategoria')
 })
 
 
-router.post('/categorias/nova',eAdmin, (req, res) => {
+router.post('/categorias/nova', upload.single("Foto"), (req, res) => {
 
   var erros = []
   if (!req.body.Nome || typeof req.body.Nome == undefined || req.body.Nome == null) {
@@ -78,7 +78,8 @@ router.post('/categorias/nova',eAdmin, (req, res) => {
   } else {
     const novaCategoria = {
       nome: req.body.Nome,
-      slug: req.body.slug
+      slug: req.body.slug,
+      imgCat:req.file.filename,
     }
     new Categoria(novaCategoria).save().then(() => {
       req.flash("success_msg", "categoria criada com sucesso!")
@@ -145,7 +146,29 @@ router.post("/categorias/deletar", eAdmin, (req, res) => {
   })
 })
 
+router.post("/patrocinador/deletar",(req,res)=>{
+Patrocinador.remove({_id:req.body.id}).then(()=>{
 
+  req.flash("success_msg", "Patrocinador  Deletada Com Sucesso ")
+  res.redirect("/admin/mostra")
+
+
+
+
+
+}).catch((error) => {
+  req.flash("error_msg", "Houve Um erro ao Deletar  a Mensagem " + error)
+  res.redirect("/admin/mostra")
+})
+
+
+
+
+
+
+
+
+})
 
 
 

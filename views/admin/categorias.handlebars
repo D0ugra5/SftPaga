@@ -9,6 +9,11 @@
         <small>{{this.slug}}</small>
         <br>
         <small>{{this.date}}</small><br>
+         <div class="card-body">
+     
+    <img  src="/upload/{{this.imgCat}}" width="250" height="250"  class="img-thumbnail rounded float-right">
+    
+  </div>  
       <a href="/admin/categorias/edit/{{_id}}" > <button class="btn btn-success mt-4">Editar Categoria</button></a>
      <form action="/admin/categorias/deletar" method="POST">
             <input type="hidden" name="id" value="{{_id}}">

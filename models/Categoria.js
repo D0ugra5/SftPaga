@@ -20,6 +20,11 @@ const Categoria = new Schema({
     {
         type: Date,
         default: Date.now()
+    },
+    imgCat:{
+
+        type:String,
+        required:true
     }
 
 
