@@ -335,7 +335,7 @@ router.get("/patrocinador", (req, res) => {
 
 })
 
-router.post("/patri", upload.single("imgPt"), (req, res) => {
+router.post("/patri", eAdmin,upload.single("imgPt"), (req, res) => {
 
   const novoPatri = {
     nome: req.body.nome,
@@ -359,7 +359,7 @@ router.post("/patri", upload.single("imgPt"), (req, res) => {
 })
 
 
-router.get("/mostra", (req, res) => {
+router.get("/mostra",eAdmin ,(req, res) => {
   Patrocinador.find().lean().then((patri)=>{
  
      res.render("admin/Mpatri", {patri:patri})
