@@ -38,7 +38,7 @@ router.get('/post',eAdmin, (req, res) => {
 
 })
 //rota categoria 
-router.get('/categorias', (req, res) => {
+router.get('/categorias', eAdmin,(req, res) => {
   Categoria.find().sort({ date: 'desc' }).lean().then((categorias) => {
 
     res.render('admin/categorias', { categorias: categorias })
@@ -52,12 +52,12 @@ router.get('/categorias', (req, res) => {
 
 //rota formulario categoria 
 
-router.get('/categorias/add', (req, res) => {
+router.get('/categorias/add', eAdmin,(req, res) => {
   res.render('admin/addcategoria')
 })
 
 
-router.post('/categorias/nova', upload.single("Foto"), (req, res) => {
+router.post('/categorias/nova',eAdmin, upload.single("Foto"), (req, res) => {
 
   var erros = []
   if (!req.body.Nome || typeof req.body.Nome == undefined || req.body.Nome == null) {
@@ -146,7 +146,7 @@ router.post("/categorias/deletar", eAdmin, (req, res) => {
   })
 })
 
-router.post("/patrocinador/deletar",(req,res)=>{
+router.post("/patrocinador/deletar",eAdmin,(req,res)=>{
 Patrocinador.remove({_id:req.body.id}).then(()=>{
 
   req.flash("success_msg", "Patrocinador  Deletada Com Sucesso ")
