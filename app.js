@@ -276,9 +276,14 @@ app.get('/produto', (req, res) => {
 
 
 
-    Postagem.find().populate("categoria").sort({ data: "desc" }).lean().then((postagens) => {
+    const cat =2
+    Postagem.find({ slug: cat }).lean().then((postagens)=>{ 
 
-        if (req.isAuthenticated()) {
+      
+      
+      
+      
+        if (req.isAuthenticated()  ) {
 
             const NomeCliente = req.user.nome
             const Admintrador = req.user.eAdmin
@@ -301,7 +306,7 @@ app.get('/produto', (req, res) => {
         }
 
 
-
+   
 
 
 
@@ -1064,6 +1069,76 @@ app.get("/patrocinadores", (req,res ) =>{
    
 
 })
+
+app.get("/receita", (req,res)=>{
+const cat = 1
+    Postagem.find({ slug: cat }).lean().then((postagem)=>{
+
+
+ if (postagem){
+
+ res.render("postagem/Receita", {postagem:postagem})
+
+
+
+
+ }else{
+
+
+
+
+
+ }
+
+
+
+
+    }).catch((err)=>{
+
+        req.flash("error_msg", "Nenhum Produto Cadastrado Nessa Categoria " + err)
+        res.redirect("/produto")
+
+        
+    })
+
+
+
+
+
+})
+
+
+
+app.get("/receita/:id", (req, res) => {
+
+    Postagem.findOne({ _id: req.params.id }).lean().then((postagem) => {
+
+
+
+
+        if (postagem) {
+            res.render("postagem/ReceitaInfo", { postagem: postagem })
+
+        } else {
+
+            req.flash("error_msg", "Esse Produto Não Existe Mais ")
+            res.redirect("/produto")
+
+        }
+
+    }).catch((error) => {
+        req.flash("error_msg", "Houve Erro interno ")
+        res.redirect("/produto")
+    })
+
+
+})
+
+
+
+
+
+
 
 
 app.get("/sobrenos", (req,res )=>{

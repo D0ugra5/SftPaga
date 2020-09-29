@@ -1,112 +1,3 @@
-<!--
-
-<div class="card mb-3">
- 
-  <input type="hidden" name="id" value="{{postagem._id}}">
-  <form action="" method="GET">
-    <img src="/upload/{{postagem.nomeImagem}}" class="card-img-top img-thumbnail rounded w-25 p-3" alt="...">
-    <div class="card-body">
-      <input type="hidden" name="id" value="{postagem._id}}">
-      <h5 class="card-title">{{postagem.titulo}}</h5>
-      <h4>Preço</h4>
-      <div name="preco">{{postagem.preco}} </div>
-    
-     
-      <p class="card-text">{{postagem.descricao}}</p>
-      <p class="card-text"><small class="text-muted">{{postagem.data}}</small></p>
-    </div>
- 
-
-  </form>
-<a href="/add-cart/{{postagem._id}}">
-    <button class="btn btn-success">Comprar</button>
-</a>
-
-
-
-
-  <form action="/cep/consulta" method="POST">
-
-    <div class="card">
-
-
-
-      <h1>Pesquisar Cep</h1>
-      <div class="card-body">
-        <input type="hidden" name="idConsulta" value="{{postagem._id}}">
-   
-
-        <input id="cep" name="cep" type="text" class="form-control" >
-
-        <button class="btn btn-success mt-4">Pesquisar</button>
-      </div>
-
-      <h5>{{Valor}}</h5>
-      {{>CepBox}}
-    
-    </div>
-
-  </form>
-
-  
-
-
-
-
-
-</div>
-  
-
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{postagem.titulo}}</h5>
-    <img src="/upload/{{postagem.nomeImagem}}" alt=""  class="img-thumbnail">
-  </div>
-  <div class="col-md-8">
-    <div class="card-body">
-
-      <h4>R$: {{postagem.preco}}</h4>
-      <h5 class="mt-4">Descrição : </h5>
-      <p class="card-text">{{postagem.descricao}}</p>
-     <div class="card">
-     
-      <p>Conteudo Do Embalagem : </p>
-      <p class="card-text"><small class="text-muted">{{postagem.conteudo}}</small></p>
-</div>
-      <a href="/add-cart/{{postagem._id}}">
-        <button class="btn btn-success btn-lg mt-4" >Comprar</button>
-      </a>
-
-    </div>
-
-
-
-    <form action="/cep/consulta" method="POST">
-
-
-
-
-      <h1 class="mt-4">Pesquisar Cep</h1>
-
-      <input type="hidden" name="idConsulta" value="{{postagem._id}}">
-
-
-      <input id="cep" name="cep" type="text" class="form-control">
-
-      <button class="btn btn-success mt-4">Pesquisar</button>
-  </div>
-
-  <h5>{{Valor}}</h5>
-  {{>CepBox}}
-
-
-
-  </form>
-
-</div>
-</div>
--->
-
 <head>
 
 
@@ -298,30 +189,17 @@
           <div class="col-xs-2">
            
           <div class="espacim">
-            <label for="ex1" > <h4> Quantidade: </h4> </div> <input class="form-control" id="ex1" type="number" min="1" max="50">
+            <label for="ex1" > Esse Produto está disponivel na Loja Fisica Com a apresentação de Receita Obrigatoria </div>
           </div>
 
 
  
       
 
-    <form action="/cep/consulta" method="POST">
+ 
 
-      <h4 class="mt-4">Pesquisar Cep</h4>
-
-      <input type="hidden" name="idConsulta" value="{{postagem._id}}">
-
-
-      <input id="cep" name="cep" type="text" class="form-control">
-
-      <button class="btn btn-success mt-4">Pesquisar</button>
-
-    </form>
-
-    <h5>{{Valor}}</h5>
-    {{>CepBox}}
     <a href="/add-cart/{{postagem._id}}">
-    <button type="button" style="width: 120px; height: 50px; margin-top:10px;"  class="btn btn-success">Comprar</button>
+    
     </a>
   </div>
 
