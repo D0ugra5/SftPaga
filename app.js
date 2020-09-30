@@ -51,7 +51,7 @@ const db = require("./config/db")
 //Mercado Config 
 MercadoPago.configure({
     sandbox: true,
-    access_token: "TEST-4425042818282530-082500-ed30a0afa9e70d9a5697a7a203fd49d6-224163688"
+    access_token: "APP_USR-4383300227306599-092419-e351390db9b5810c819a30325b7e4e6c-636981516"
 
 })
 
@@ -1168,3 +1168,4 @@ app.listen(80, () => {
 
     console.log("Servidor On")
 })
+
