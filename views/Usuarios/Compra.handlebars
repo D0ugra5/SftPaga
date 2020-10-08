@@ -1,0 +1,201 @@
+<!--
+<div class="user">
+
+<div class="card">
+  <div class="card-body">
+    <h1>{{nome}}</h1>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<h1>Minha Compras :</h1>
+{{#each orders}}
+<div class="list-group">
+  {{#each this.items}}
+
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between mt-3">
+      <h3 class="mb-1">{{this.item.titulo}}</h3>
+      <h5 class="mb-1">Preço: {{this.preco}}</h5>
+      <small>Quantidade: {{this.qty}}</small>
+    </div>
+    <p class="mb-1">{{this.item.descricao}}</small>
+
+      {{/each}}
+      <p class="mb-2"> Endereço: {{this.Endereco}}, Numero :{{this.Numero}}, Complemento{{this.complemento}}</p>
+      <p class="mb-2"> Status: {{this.Status}}</p>
+      <p class="mb-2"> Valor Total: {{this.valorTotal}}</p>
+  </a>
+</div>
+{{/each}}
+-->
+<style>
+  .voltarPedido {
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  .div-1 {
+    margin-left: 5%;
+    padding: 2%;
+    background-color: #c6f1b7;
+
+
+    border: 1px solid;
+    border-color: rgb(190, 190, 190);
+    ;
+    border-radius: 10px;
+
+  }
+
+  .div-a {
+    margin-left: 5%;
+    padding: 2%;
+    background-color: #c6f1b7;
+    border: 1px solid;
+    border-color: rgb(190, 190, 190);
+    ;
+    border-radius: 10px;
+
+  }
+
+
+  .li:first-child {
+    color: red;
+  }
+
+
+  .tabela-carros tr td {
+    padding: 20px;
+
+
+  }
+
+  .tabela-carros {
+   
+    cursor: pointer;
+    margin-right: 3%;
+
+  }
+
+
+
+  .tabela-carros tr {
+    background-color: #90fca2;
+
+  }
+
+
+  .tabela-carros tr:hover {
+    background-color: rgb(109, 255, 182);
+  }
+</style>
+
+
+
+<div class="div-1"> 
+
+<h3>{{nome}}</h3>
+
+<p>{{email}}</p>
+
+
+
+
+</div>
+
+<div class="div-a mt-4">
+<h2> Resumo do pedido </h2>
+<br>
+
+{{#each orders}}
+  {{#each this.items}}
+  <h4 class="mt-4"> Produto:  {{this.item.titulo}}</h4>
+
+  <br>
+
+
+
+
+
+
+
+  <table class="tabela-carros " cellspacing="0">
+    
+
+  
+
+
+    </tr>
+
+    <tr>
+      <td> Preço : </td>
+      <td> </td>
+      <td> {{this.preco}} </td>
+
+
+    </tr>
+
+    <tr>
+      <td> Quantidade :</td>
+      <td> </td>
+      <td> {{this.qty}} </td>
+  
+    </tr>
+<tr>
+      <td> Descrição : </td>
+      <td> </td>
+      <td> {{this.item.descricao}}</td>
+
+
+    </tr>
+    {{/each}}
+
+<tr>
+      <td> Status : </td>
+      <td> </td>
+      <td> {{this.Status}}</td>
+
+
+    </tr>
+
+
+
+  <tr>
+      <td> Endereço : </td>
+      <td> </td>
+      <td>  {{this.Endereco}}, Numero :{{this.Numero}}, Complemento: {{this.complemento}} </td></tr>
+        <tr>
+      <td> Valor Total : </td>
+      <td> </td>
+      <td> {{this.valorTotal}} </td></tr>
+  </table>
+
+{{/each}}
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<div class="row row-cols-1 row-cols-md-3">
+    {{#each postagens }}
+  
+    <div class="col mb-4">
+    
+        <div class="card ">
+            
+            <img src="/upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{titulo}}</h5>
+                <p class="card-text">{{preco}}</p>
+              
+                     <a href="/postagens/{{_id}}" class="btn btn-primary">Comprar</a>
+            </div>
+
+
+
+        </div>
+     
+      
+    </div>
+ {{else}}
+ 
+
+ 
+
+
+
+ <h1 class="mt-4">Nenhum Produto para Ser Exibido</h1>
+
+
+    
+    {{/each}}
+   
+ 
+</div>

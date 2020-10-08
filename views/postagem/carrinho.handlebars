@@ -1,0 +1,290 @@
+
+<!--
+
+{{#if products}}
+
+<div class="card">
+    <h1>Carrinho : </h1>
+    <div class="card-body">
+</div>
+
+<ul class="list-group">
+  {{#each products}}
+
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+   Produto : {{this.item.titulo}}
+
+   
+
+    <span class="badge badge-primary badge-pill">R$: {{this.preco}}</span>
+    <span class="badge badge-primary badge-pill">Quantidade: {{this.qty}}</span>
+   <a href="/remove/{{this.item._id}}"> <button class="btn btn-danger">Remover</button></a>
+  
+  </li>
+ 
+  {{/each}}
+
+</ul>
+
+    </div>
+
+
+</div>
+</div>
+<div class="card">
+
+
+
+    <div class="card-body">
+
+  
+        <strong class="ml-4 mt-3">Total:{{totalprice}}</strong>
+    
+        {{#if user}}
+        <a href="/cep">
+ <button class="btn btn-success float-right mr-3">Comprar</button>
+ </a>
+
+ {{else}}
+<a href="/usuarios/login">
+ <button class="btn btn-success float-right mr-3">Para Continuar Faça o Login </button>
+ </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+{{else}}
+
+<hr>
+
+
+
+<div class="row">
+    <div class="">
+        <h2>Não ha Itens No Carrinho</h2>
+    </div>
+</div>
+
+
+
+{{/if}}
+
+-->
+
+<style>
+
+h1 {
+    margin-bottom: 20px;
+    font-family: 'PlutoBold', Arial, sans-serif;
+    font-size: 2.500em;
+    color: #2e8b96;
+    letter-spacing: -0.05em;
+    
+}
+
+h5{
+    margin-left
+}
+
+.carrinho{
+    margin-left: 4%;
+    margin-top:5%;
+}
+.tudao{
+    
+    width: 70%;
+}
+.card{
+    
+
+}
+
+.total{
+    
+    float: right;
+    margin-
+}
+
+.card-body{
+    margin-right: 6%;
+}
+</style>
+
+
+{{#if products}}
+
+
+
+
+
+
+<div class="card">
+    <div class="carrinho">
+        <img src="../postagem/carrinho.png" class="rounded float-right"  width="150px" height="100px"  style="margin-right:5%" alt="...">
+        <h1>Meu Carrinho </h1>
+        <h5> Confira os itens adicionados </h5>
+        
+    </div>
+    
+
+    <div class="card-body">
+
+</div>
+<ul class="list-group">
+  {{#each products}}
+
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+
+        
+
+   Produto : {{this.item.titulo}}
+
+   
+
+    <span class="badge badge-primary badge-pill"> R$: {{this.preco}}</span>
+    <span class="badge badge-primary badge-pill">Quantidade: {{this.qty}}</span>
+   <a href="/remove/{{this.item._id}}"> <button class="btn btn-danger">Remover</button></a>
+  
+  </li>
+    
+
+  {{/each}}
+
+</ul>
+
+    </div>
+
+
+</div>
+</div>
+<div class="card">
+
+
+
+    <div class="card-body">
+                        {{#if user}}
+                        
+                <a href="/cep">
+        <button class="btn btn-success float-right mr-3" style="width: 150px; height:80px;" >Comprar</button>
+        </a>
+  
+            <strong class="ml-4 mt-3" style="float: right; margin-right:5%">Total: R${{totalprice}}</strong>
+    
+        {{else}}
+        <a href="/usuarios/login">
+        <button class="btn btn-success float-right mr-3" style="width: 150px; height:80px;" >Para Continuar Faça o Login </button>
+        </a>
+
+            <strong class="ml-4 mt-3" style="float: right; margin-right:5%">Total: R${{totalprice}}</strong>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+{{else}}
+
+<hr>
+
+
+
+<div class="row">
+    <div class="">
+        <h2>Não ha Itens No Carrinho</h2>
+    </div>
+</div>
+
+
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
