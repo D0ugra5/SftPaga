@@ -294,7 +294,6 @@ app.get('/produto', (req, res) => {
 
 
 
-
             res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
 
         } else {
@@ -304,7 +303,6 @@ app.get('/produto', (req, res) => {
 
 
         }
-
 
 
 
@@ -1148,7 +1146,6 @@ app.get("/receita", (req, res) => {
         req.flash("error_msg", "Nenhum Produto Cadastrado Nessa Categoria " + err)
         res.redirect("/produto")
 
-
     })
 
 
@@ -1207,7 +1204,6 @@ app.post("/removeVenda", (req, res) => {
 
 
 
-
 })
 
 
@@ -1218,7 +1214,6 @@ app.get("/sobrenos", (req, res) => {
     res.render("Sobre/sobrenos")
 
 })
-
 
 
 

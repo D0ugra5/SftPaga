@@ -210,7 +210,6 @@ router.post("/postagens/nova", upload.single("Foto"), (req, res) => {
     res.render("admin/addPostagens", { erros: erros })
 
   } else {
-
     const novaPostagem = {
       titulo: req.body.titulo,
       descricao: req.body.descricao,
