@@ -129,7 +129,7 @@
 
     }
 
-    
+
 
     .info {
       margin-left: 6%;
@@ -181,74 +181,73 @@
       margin-top: 4%;
     }
 
-   .infoProd{
-        margin-left: 7%;
-        margin-right: 50%;
-        background-color: rgb(35, 113, 141)63);
+    .infoProd {
+      margin-left: 7%;
+      margin-right: 50%;
+      background-color: rgb(35, 113, 141)63);
     }
 
-    .espacim{
+    .espacim {
       float: left;
     }
-    
   </style>
 
 
 
-<!-- BOTAO -->
-<style>
+  <!-- BOTAO -->
+  <style>
     .button {
-  display: inline-block;
-  border-radius: 7px;
-  background-color: #1b9121bd;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 10px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-  
-}
+      display: inline-block;
+      border-radius: 7px;
+      background-color: #1b9121bd;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 10px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
 
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.botaoCompra{
-  float: center;
-}
- .infoProd{
-        text-align: justify;
-        margin-left: 7%;
-        margin-right: 50%;
-        background-color: rgb(35, 113, 141)63);
     }
 
-</style>
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+
+    .botaoCompra {
+      float: center;
+    }
+
+    .infoProd {
+      text-align: justify;
+      margin-left: 7%;
+      margin-right: 50%;
+      background-color: rgb(35, 113, 141)63);
+    }
+  </style>
 
 
 </head>
@@ -264,26 +263,27 @@
 <div class="card">
 
 
-        <div class="imgdoZoom">
+  <div class="imgdoZoom">
 
-          <div class="zoom">
+    <div class="zoom">
 
-            <img src="/upload/{{postagem.nomeImagem}}" alt="" width="100%" height="100%">
-          </div>
+      <img src="/upload/{{postagem.nomeImagem}}" alt="" width="100%" height="100%">
+    </div>
 
-        </div>
+  </div>
 </div>
 
 <div class="divguizaoPica">
-    <tr>
+  <tr>
 
-      <td>
-          <h3>{{postagem.titulo}}</h3>
-        
+    <td>
+      <h3>{{postagem.titulo}}</h3>
 
-      </td>
 
-    </tr>
+    </td>
+
+  </tr>
+
 
 
 
@@ -291,44 +291,63 @@
 
   <div class="cepinho">
 
-
-        <div class="form-group row">
-          <h4>R$: {{postagem.preco}}</h4>
-     
-          <div class="col-xs-2">
-           
-          <div class="espacim">
-            <label for="ex1" > <h4> Quantidade: </h4> </div> <input class="form-control" id="ex1" type="number" min="1" max="50">
-          </div>
+{{#if teste}}
+<p>Vai ate a loja porra </p>
+{{else}}
+    <div class="form-group row">
+      <h4>R$: {{postagem.preco}}</h4>
 
 
- 
+   
+
+
+
+
+      <form action="/cep/consulta" method="POST">
+
+        <h4 class="mt-4">Pesquisar Cep</h4>
+
+        <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+
+
+        <input id="cep" name="cep" type="text" class="form-control">
+
+        <button class="btn btn-success mt-4">Pesquisar</button>
+
+      </form>
+
+      <h5>{{Valor}}</h5>
+      {{>CepBox}}
       
 
-    <form action="/cep/consulta" method="POST">
+<form action="/add-cart/" method="POST">
 
-      <h4 class="mt-4">Pesquisar Cep</h4>
+   <div class="col-xs-2">
 
-      <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+        <div class="espacim">
+          <label for="ex1">
+            <h4> Quantidade: </h4>
+        </div>
+        <input class="form-control" name="qtyQ" id="ex1" type="number" min="1" max="50">
+      </div>
 
 
-      <input id="cep" name="cep" type="text" class="form-control">
 
-      <button class="btn btn-success mt-4">Pesquisar</button>
 
-    </form>
+<input type="hidden" name="id" value="{{postagem._id}}" >
+        <button type="submit" style="width: 120px; height: 50px; margin-top:10px;"
+          class="btn btn-success">Comprar</button>
 
-    <h5>{{Valor}}</h5>
-    {{>CepBox}}
-    <a href="/add-cart/{{postagem._id}}">
-    <button type="button" style="width: 120px; height: 50px; margin-top:10px;"  class="btn btn-success">Comprar</button>
-    </a>
-  </div>
 
-       <!-- BOTAO -->
     
+      </form>
+    </div>
 
-</div>
+    <!-- BOTAO -->
+
+
+{{/if}}
+  </div>
 </div>
 
 <div class="info">
@@ -344,6 +363,6 @@
 <hr>
 </hr>
 <br>
-<div class="infoProd"  style="white-space: pre-wrap">
-    <p class="card-text">{{postagem.descricao}}</p>
+<div class="infoProd" style="white-space: pre-wrap">
+  <p class="card-text">{{postagem.descricao}}</p>
 </div>

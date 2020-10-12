@@ -86,7 +86,16 @@ const Postagem = new Schema({
          required:true
 
 
-    }
+    },
+    cdn : {
+
+        type:Number
+    },
+    categoria2: {
+        type: Schema.Types.ObjectId,
+        ref: "categorias",
+        required: true
+    },
 
 
 

@@ -5,17 +5,20 @@ module.exports = function Cart(oldCart) {
     this.totalQty = oldCart.totalQty || 0;
     this.totalprice = oldCart.totalprice || 0;
 
-    this.add = function (item, id,cep) {
+    this.add = function (item, id,qtyC ) {
         var storedItem = this.items[id]
         if (!storedItem) {
 
-            storedItem = this.items[id] = { item: item, qty: 0, preco: 0 }
+            storedItem = this.items[id] = { item: item, qtyC: qtyC, preco: 0 }
 
         }
-        storedItem.qty++;
-        storedItem.preco = storedItem.item.preco * storedItem.qty;
-        this.totalQty++;
-        this.totalprice += storedItem.item.preco
+
+    
+
+        storedItem.qtyC;
+        storedItem.preco = storedItem.item.preco * storedItem.qtyC;
+        this.totalQty = qtyC;
+        this.totalprice += storedItem.item.preco * storedItem.qtyC
         this.Teste22 = storedItem.item._id
          
     
@@ -30,7 +33,7 @@ module.exports = function Cart(oldCart) {
           }
 
           this.removeItem = function(id){
-              this.totalQty-= this.items[id].qty
+              this.totalQty-= this.items[id].qtyC
               this.totalprice -= this.items[id].preco;
               delete this.items[id]
           }

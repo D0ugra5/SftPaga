@@ -1,16 +1,16 @@
 <div class="row row-cols-1 row-cols-md-3">
-    {{#if postagens }}
-  
+
+  {{#each postagens}}
     <div class="col mb-4">
     
         <div class="card ">
             
-            <img src="/upload/{{postagens.nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
+            <img src="/upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{postagens.titulo}}</h5>
-                <p class="card-text">{{postagens.conteudo}}.</p>
-                   
-                     <a href="/postagens/{{postagens._id}}" class="btn btn-primary">Comprar</a>
+                <h5 class="card-title">{{titulo}}</h5>
+              
+                 
+                     <a href="/postagens/{{_id}}" class="btn btn-primary">Comprar</a>
             </div>
 
 
@@ -19,6 +19,7 @@
      
       
     </div>
+
  {{else}}
  
 
@@ -28,7 +29,8 @@
 
 
     
-    {{/if}}
-   
+
+   {{/each}}
+
  
 </div>

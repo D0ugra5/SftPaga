@@ -15,7 +15,7 @@
             <input type="text" name="slug" class="form-control">
             <label for="descricao">Descrição</label>
            
-            <textarea name="descricao" id="" cols="30" rows="10"></textarea>
+            <textarea name="descricao" id="" class="form-control"></textarea>
             <label for="conteudo">Conteúdo</label>
             <textarea name="conteudo" class="form-control"></textarea>
 
@@ -52,8 +52,17 @@
 
 
 
-            <label for="categoria"></label>
+            <label for="categoria">Categoria : </label>
             <select name="categoria" class="custom-select">
+                {{#each categoria}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
+
+             <label for="categoria2">SubCategoria:</label>
+            <select name="categoria2" class="custom-select">
                 {{#each categoria}}
                 <option value="{{_id}}">{{nome}}</option>
                 {{else}}

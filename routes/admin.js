@@ -5,40 +5,40 @@ const mongoose = require("mongoose")
 const path = require("path")
 require("../models/Categoria")
 const Categoria = mongoose.model("categorias")
-const {eAdmin} = require("../helpers/eAdmin")
+const { eAdmin } = require("../helpers/eAdmin")
 require('../models/Patrocinador')
 const Patrocinador = mongoose.model("Patrocinador")
 //
 require('../models/Postagem')
 const Postagem = mongoose.model("postagens")
 
-router.use(express.static(path.join(__dirname,"public")))
+router.use(express.static(path.join(__dirname, "public")))
 
 const storage = multer.diskStorage({
-      destination: function(req,file,cb){
-            cb(null,"public/upload")
-      },
-      filename: function(req,file,cb){
-        cb(null,file.originalname+Date.now()+path.extname(file.originalname))
+  destination: function (req, file, cb) {
+    cb(null, "public/upload")
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname + Date.now() + path.extname(file.originalname))
 
-      }
+  }
 
 })
-const upload = multer({storage})
+const upload = multer({ storage })
 
 //rota index admin
-router.get('/', eAdmin,(req, res) => {
+router.get('/', eAdmin, (req, res) => {
 
   res.render("admin/index")
 })
 //rota post 
-router.get('/post',eAdmin, (req, res) => {
+router.get('/post', eAdmin, (req, res) => {
 
   res.render("pagina de post ")
 
 })
 //rota categoria 
-router.get('/categorias', eAdmin,(req, res) => {
+router.get('/categorias', eAdmin, (req, res) => {
   Categoria.find().sort({ date: 'desc' }).lean().then((categorias) => {
 
     res.render('admin/categorias', { categorias: categorias })
@@ -52,12 +52,12 @@ router.get('/categorias', eAdmin,(req, res) => {
 
 //rota formulario categoria 
 
-router.get('/categorias/add', eAdmin,(req, res) => {
+router.get('/categorias/add', eAdmin, (req, res) => {
   res.render('admin/addcategoria')
 })
 
 
-router.post('/categorias/nova',eAdmin, upload.single("Foto"), (req, res) => {
+router.post('/categorias/nova', eAdmin, upload.single("Foto"), (req, res) => {
 
   var erros = []
   if (!req.body.Nome || typeof req.body.Nome == undefined || req.body.Nome == null) {
@@ -79,7 +79,7 @@ router.post('/categorias/nova',eAdmin, upload.single("Foto"), (req, res) => {
     const novaCategoria = {
       nome: req.body.Nome,
       slug: req.body.slug,
-      imgCat:req.file.filename,
+      imgCat: req.file.filename,
     }
     new Categoria(novaCategoria).save().then(() => {
       req.flash("success_msg", "categoria criada com sucesso!")
@@ -96,7 +96,7 @@ router.post('/categorias/nova',eAdmin, upload.single("Foto"), (req, res) => {
 
 
 })
-router.get('/categorias/edit/:id', eAdmin,(req, res) => {
+router.get('/categorias/edit/:id', eAdmin, (req, res) => {
   Categoria.findOne({ _id: req.params.id }).lean().then((categoria) => {
 
     res.render("admin/EditCategoria", { categoria: categoria })
@@ -114,7 +114,7 @@ router.get('/categorias/edit/:id', eAdmin,(req, res) => {
 
 
 })
-router.post('/categorias/edit', eAdmin,(req, res) => {
+router.post('/categorias/edit', eAdmin, (req, res) => {
   Categoria.findOne({ _id: req.body.id }).then((categoria) => {
 
     categoria.nome = req.body.Nome
@@ -146,34 +146,34 @@ router.post("/categorias/deletar", eAdmin, (req, res) => {
   })
 })
 
-router.post("/patrocinador/deletar",eAdmin,(req,res)=>{
-Patrocinador.remove({_id:req.body.id}).then(()=>{
+router.post("/patrocinador/deletar", eAdmin, (req, res) => {
+  Patrocinador.remove({ _id: req.body.id }).then(() => {
 
-  req.flash("success_msg", "Patrocinador  Deletada Com Sucesso ")
-  res.redirect("/admin/mostra")
-
-
+    req.flash("success_msg", "Patrocinador  Deletada Com Sucesso ")
+    res.redirect("/admin/mostra")
 
 
 
-}).catch((error) => {
-  req.flash("error_msg", "Houve Um erro ao Deletar  a Mensagem " + error)
-  res.redirect("/admin/mostra")
+
+
+  }).catch((error) => {
+    req.flash("error_msg", "Houve Um erro ao Deletar  a Mensagem " + error)
+    res.redirect("/admin/mostra")
+  })
+
+
+
+
+
+
+
+
 })
 
 
 
 
-
-
-
-
-})
-
-
-
-
-router.get("/postagens" ,eAdmin,(req, res) => {
+router.get("/postagens", eAdmin, (req, res) => {
   Postagem.find().lean().populate("categoria").sort({ data: "desc" }).then((postagens) => {
     res.render("admin/postangens", { postagens: postagens })
   }).catch((err) => {
@@ -183,7 +183,7 @@ router.get("/postagens" ,eAdmin,(req, res) => {
 
 })
 
-router.get("/postagens/add", eAdmin,(req, res) => {
+router.get("/postagens/add", eAdmin, (req, res) => {
   Categoria.find().lean().then((categoria) => {
     res.render("admin/addPostagens", { categoria: categoria })
 
@@ -198,7 +198,7 @@ router.get("/postagens/add", eAdmin,(req, res) => {
 
 
 })
-router.post("/postagens/nova", upload.single("Foto"),(req, res) => {
+router.post("/postagens/nova", upload.single("Foto"), (req, res) => {
 
   var erro = []
 
@@ -210,21 +210,25 @@ router.post("/postagens/nova", upload.single("Foto"),(req, res) => {
     res.render("admin/addPostagens", { erros: erros })
 
   } else {
+
     const novaPostagem = {
       titulo: req.body.titulo,
       descricao: req.body.descricao,
       conteudo: req.body.conteudo,
       slug: req.body.slug,
       categoria: req.body.categoria,
-      preco:req.body.preco,
-      nomeImagem:req.file.filename,
-      
-      peso:req.body.peso,
-      formato:req.body.formato,
-      comprimento:req.body.comprimento,
-      altura:req.body.altura,
-      largura:req.body.largura,
-      diametro:req.body.diametro
+      categoria2: req.body.categoria2,
+      preco: req.body.preco,
+      nomeImagem: req.file.filename,
+
+      peso: req.body.peso,
+      formato: req.body.formato,
+      comprimento: req.body.comprimento,
+      altura: req.body.altura,
+      largura: req.body.largura,
+      diametro: req.body.diametro
+
+
 
 
     }
@@ -243,11 +247,11 @@ router.post("/postagens/nova", upload.single("Foto"),(req, res) => {
 })
 
 
-router.get("/postagens/edit/:id",eAdmin,(req, res) => {
-  Postagem.findOne({ _id: req.params.id }).lean().sort({data:"desc"}).then((postagem) => {
+router.get("/postagens/edit/:id", eAdmin, (req, res) => {
+  Postagem.findOne({ _id: req.params.id }).lean().sort({ data: "desc" }).then((postagem) => {
     Categoria.find().lean().then((categoria) => {
 
-      res.render("admin/editpostagens",{ categoria: categoria, postagem: postagem })
+      res.render("admin/editpostagens", { categoria: categoria, postagem: postagem })
 
     })
 
@@ -268,42 +272,43 @@ router.get("/postagens/edit/:id",eAdmin,(req, res) => {
 })
 
 
-router.post("/postagem/edit",upload.single("Foto"),eAdmin,(req, res) => {
+router.post("/postagem/edit", upload.single("Foto"), eAdmin, (req, res) => {
 
   Postagem.findOne({ _id: req.body.id }).then((postagem) => {
 
-           postagem.titulo = req.body.titulo
-           postagem.slug = req.body.slug
-           postagem.descricao = req.body.descricao
-           postagem.conteudo = req.body.conteudo
-           postagem.categoria= req.body.categoria
-           postagem.nomeImagem= req.file.filename
-           postagem.preco = req.body.preco
-           postagem.peso = req.body.peso
-           postagem.formato=req.body.formato
-           postagem.comprimento=req.body.comprimento
-           postagem.altura=req.body.altura
-           postagem.largura=req.body.largura
-           postagem.diametro=req.body.diametro
+    postagem.titulo = req.body.titulo
+    postagem.slug = req.body.slug
+    postagem.descricao = req.body.descricao
+    postagem.conteudo = req.body.conteudo
+    postagem.categoria = req.body.categoria
+    postagem.nomeImagem = req.file.filename
+    postagem.preco = req.body.preco
+    postagem.peso = req.body.peso
+    postagem.formato = req.body.formato
+    postagem.comprimento = req.body.comprimento
+    postagem.altura = req.body.altura
+    postagem.largura = req.body.largura
+    postagem.diametro = req.body.diametro
+    postagem.categoria2 = req.body.categoria2
 
-           postagem.save().then(()=>{
+    postagem.save().then(() => {
 
-              req.flash("success_msg","Postagem editada com Sucesso")
-              res.redirect("/admin/postagens")
+      req.flash("success_msg", "Postagem editada com Sucesso")
+      res.redirect("/admin/postagens")
 
-           }).catch((err)=>{
+    }).catch((err) => {
 
-            req.flash("error","Postagem editada com Falha"+err)
-            res.redirect("/admin/postagens")
-
-
+      req.flash("error", "Postagem editada com Falha" + err)
+      res.redirect("/admin/postagens")
 
 
-           })
+
+
+    })
 
   }).catch((err) => {
 
-    req.flash("error_msg", "houve um erro ao editar  o formulario"+err)
+    req.flash("error_msg", "houve um erro ao editar  o formulario" + err)
     res.redirect("/admin/postagens")
 
   })
@@ -312,20 +317,20 @@ router.post("/postagem/edit",upload.single("Foto"),eAdmin,(req, res) => {
 
 })
 
-router.get("/postagens/deletar/:id",eAdmin,(req,res)=>{
+router.get("/postagens/deletar/:id", eAdmin, (req, res) => {
 
-Postagem.remove({_id:req.params.id}).then(()=>{
-  req.flash("success_msg","Postagem deletada com Sucesso")
-       res.redirect("/admin/postagens")
-
-
-}).catch((err)=>{
-  req.flash("error_msg","Houve um erro ao Salvar ")
-  res.redirect("/admin/postagens")
+  Postagem.remove({ _id: req.params.id }).then(() => {
+    req.flash("success_msg", "Postagem deletada com Sucesso")
+    res.redirect("/admin/postagens")
 
 
+  }).catch((err) => {
+    req.flash("error_msg", "Houve um erro ao Salvar ")
+    res.redirect("/admin/postagens")
 
-})
+
+
+  })
 
 })
 
@@ -335,7 +340,7 @@ router.get("/patrocinador", (req, res) => {
 
 })
 
-router.post("/patri", eAdmin,upload.single("imgPt"), (req, res) => {
+router.post("/patri", eAdmin, upload.single("imgPt"), (req, res) => {
 
   const novoPatri = {
     nome: req.body.nome,
@@ -359,16 +364,16 @@ router.post("/patri", eAdmin,upload.single("imgPt"), (req, res) => {
 })
 
 
-router.get("/mostra",eAdmin ,(req, res) => {
-  Patrocinador.find().lean().then((patri)=>{
- 
-     res.render("admin/Mpatri", {patri:patri})
- 
+router.get("/mostra", eAdmin, (req, res) => {
+  Patrocinador.find().lean().then((patri) => {
+
+    res.render("admin/Mpatri", { patri: patri })
+
   })
- 
- 
- 
- })
+
+
+
+})
 
 
 

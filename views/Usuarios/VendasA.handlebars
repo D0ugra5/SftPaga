@@ -116,8 +116,11 @@
 <br>
 
 {{#each orders}}
+
   {{#each this.items}}
   <h4 class="mt-4"> Produto:  {{this.item.titulo}}</h4>
+  
+   
 
   <br>
 
@@ -163,7 +166,9 @@
       <td> </td>
       <td> {{this.Status}}</td>
 
-
+<form action="">
+  
+</form>
     </tr>
     <tr>
       <td> Nome Comprador : </td>
@@ -189,6 +194,9 @@
       <td>  {{this.cidade}} </td></tr>
         <tr>
 
+
+
+
   <tr>
       <td> Endereço : </td>
       <td> </td>
@@ -198,7 +206,15 @@
       <td> </td>
       <td> {{this.valorTotal}} </td></tr>
   </table>
+ 
 
+ <form action="/removeVenda" method="POST">
+ <label for="id">{{this.item._id}}</label>
+ <h1>{{this.item._id}}</h1>
+ <input type="hidden" name="id" value="{{_id}}">
+ <button type="submit" class="btn btn-danger"> EXCLUIR </button>
+ 
+ </form>
 {{/each}}
 
 

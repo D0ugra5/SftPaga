@@ -254,12 +254,12 @@ app.use('/admin', admin)
 
 
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
 
     res.render("Sobre/home")
-    
-    })
-    
+
+})
+
 
 
 
@@ -276,14 +276,14 @@ app.get('/produto', (req, res) => {
 
 
 
-    const cat =2
-    Postagem.find({ slug: cat }).lean().then((postagens)=>{ 
+    const cat = 2
+    Postagem.find({ slug: cat }).lean().sort({ data: "desc" }).limit(20).then((postagens) => {
 
-      
-      
-      
-      
-        if (req.isAuthenticated()  ) {
+
+
+
+
+        if (req.isAuthenticated()) {
 
             const NomeCliente = req.user.nome
             const Admintrador = req.user.eAdmin
@@ -292,7 +292,7 @@ app.get('/produto', (req, res) => {
 
 
 
-            console.log(Admintrador)
+
 
 
             res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
@@ -306,7 +306,7 @@ app.get('/produto', (req, res) => {
         }
 
 
-   
+
 
 
 
@@ -339,7 +339,20 @@ app.get("/postagens/:id", (req, res) => {
 
 
         if (postagem) {
-            res.render("postagem/index", { postagem: postagem })
+            var teste = 0
+
+            if (postagem.categoria == "5f74795b5a9e50f8a15063bc") {
+                console.log(postagem.categoria)
+
+                 teste = 1
+                console.log("tes1")
+             } else {
+
+                teste = 0
+                console.log("tes0")
+            }
+
+            res.render("postagem/index", { postagem: postagem, teste: teste })
 
         } else {
 
@@ -349,7 +362,7 @@ app.get("/postagens/:id", (req, res) => {
         }
 
     }).catch((error) => {
-        req.flash("error_msg", "Houve Erro interno ")
+        req.flash("error_msg", "Houve Erro interno " + error)
         res.redirect("/produto")
     })
 
@@ -367,12 +380,19 @@ app.get("/categorias", (req, res) => {
 })
 
 app.get("/categorias/:id", (req, res) => {
+
     Categoria.findOne({ _id: req.params.id }).lean().then((categoria) => {
         if (categoria) {
-            Postagem.find({ categoria: categoria._id }).lean().then((postagens) => {
+            Postagem.find({ $or: [{ categoria: categoria._id }, { categoria2: categoria._id }] }).lean().then((postagens) => {
 
 
-                res.render("Categoria/tiposC", { postagens, postagens, categoria: categoria })
+
+
+
+                res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria })
+
+
+
 
 
             })
@@ -456,11 +476,11 @@ app.post("/calculaFrete", (req, res, next) => {
 
 
         for (var i = 0; i < quantidade; i++) {
-            const { qty } = arr[x]
+            const { qtyC } = arr[x]
 
             const { item: { _id } } = arr[x]
             console.log(_id)
-            console.log(qty)
+            console.log(qtyC)
             Postagem.findOne({ _id: _id }).lean().then((postagens) => {
 
                 let args4 = {
@@ -488,7 +508,7 @@ app.post("/calculaFrete", (req, res, next) => {
                     comVirgula = parseFloat(comVirgula.replace(',', '.'));
 
 
-                    valorF = valorF + comVirgula * qty
+                    valorF = valorF + comVirgula * qtyC
 
                     console.log(valorF)
                     var totalR
@@ -547,49 +567,65 @@ app.post("/calculaFrete", (req, res, next) => {
 
 app.post('/cep/consulta', (req, res) => {
     const idConsulta = req.body.idConsulta
-    Postagem.findOne({_id:idConsulta}).then((postagens)=>{
-
-  
- 
-
-    const { calcularPrecoPrazo } = require("correios-brasil");
-
-    const cep = req.body.cep
-    console.log(cep)
-  
-    const confere = "" + cep + ""; // 21770200 , '21770-200', '21770 200'.... qualquer um formato serve
-    const { consultarCep } = require("correios-brasil");
-    consultarCep(confere).then((response) => {
-        console.log(response);
+    Postagem.findOne({ _id: idConsulta }).then((postagens) => {
 
 
 
 
-        let args2 = {
-            // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
-            sCepOrigem: "06704255",
-            sCepDestino: "" + cep + "",
-            nVlPeso: postagens.peso,
-            nCdFormato: postagens.formato,
-            nVlComprimento: postagens.comprimento,
-            nVlAltura: postagens.altura,
-            nVlLargura: postagens.largura,
-            nCdServico: "04014  ",
-            nVlDiametro: postagens.diametro,
-        };
+        const { calcularPrecoPrazo } = require("correios-brasil");
 
-        calcularPrecoPrazo(args2).then((response2) => {
-            console.log(response2)
-            const { Codigo, Valor, PrazoEntrega } = response2
-            console.log(Valor, Codigo)
+        const cep = req.body.cep
+        console.log(cep)
+
+        const confere = "" + cep + ""; // 21770200 , '21770-200', '21770 200'.... qualquer um formato serve
+        const { consultarCep } = require("correios-brasil");
+        consultarCep(confere).then((response) => {
+            console.log(response);
 
 
 
-            req.flash("CepSucess", PrazoEntrega + "      :Dias")
 
-            req.flash("CepValor", "Valor :" + Valor)
+            let args2 = {
+                // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
+                sCepOrigem: "06704255",
+                sCepDestino: "" + cep + "",
+                nVlPeso: postagens.peso,
+                nCdFormato: postagens.formato,
+                nVlComprimento: postagens.comprimento,
+                nVlAltura: postagens.altura,
+                nVlLargura: postagens.largura,
+                nCdServico: "04014  ",
+                nVlDiametro: postagens.diametro,
+            };
+
+            calcularPrecoPrazo(args2).then((response2) => {
+                console.log(response2)
+                const { Codigo, Valor, PrazoEntrega } = response2
+                console.log(Valor, Codigo)
+
+
+
+                req.flash("CepSucess", PrazoEntrega + "      :Dias")
+
+                req.flash("CepValor", "Valor :" + Valor)
+                res.redirect("/postagens/" + idConsulta + "")
+
+
+            })
+
+
+
+
+
+
+
+
+
+        }).catch((err) => {
+
+
+            req.flash("CepSucess", "Cep Invalido")
             res.redirect("/postagens/" + idConsulta + "")
-
 
         })
 
@@ -599,17 +635,7 @@ app.post('/cep/consulta', (req, res) => {
 
 
 
-
-
-    }).catch((err) => {
-
-
-        req.flash("CepSucess", "Cep Invalido")
-        res.redirect("/postagens/" + idConsulta + "")
-
     })
-
-
 
 
 
@@ -617,29 +643,41 @@ app.post('/cep/consulta', (req, res) => {
 
 })
 
+app.post("/add-cart/", (req, res, next) => {
+
+    var quantidade = req.body.qtyQ
+    var productId = req.body.id
+
+       if (quantidade == 0 || quantidade == "" || quantidade == null || quantidade == undefined){
+
+quantidade  = 1 
 
 
 
 
-})
-
-app.get("/add-cart/:id", (req, res, next) => {
-
-
-    var productId = req.params.id
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-    Postagem.findById(productId, function (err, product) {
-        if (err) {
-            return res.redirect("/produto")
-        }
-        cart.add(product, product.id);
-        req.session.cart = cart;
-        console.log(req.session.cart)
-        res.redirect("/shopping-cart")
 
 
 
-    })
+       }
+
+
+       var cart = new Cart(req.session.cart ? req.session.cart : {});
+       Postagem.findById(productId, function (err, product) {
+          if (err) {
+              return res.redirect("/produto")
+          }
+          cart.add(product, product.id,quantidade);
+          req.session.cart = cart;
+          console.log(req.session.cart)
+          res.redirect("/shopping-cart")
+  
+  
+  
+      })
+
+
+
+  
 
 })
 
@@ -699,12 +737,18 @@ app.get("/shopping-cart", (req, res, next) => {
 
 
 app.post("/buscar", (req, res) => {
-    var pesquisa = req.body.pesquisar
-    console.log(pesquisa)
-    Postagem.findOne({ titulo: pesquisa }).lean().then((postagens) => {
+    var pesquisa = req.body.pesquisar.toUpperCase()
+
+
+
+    let reString = 'exemplo';
+    let re = new RegExp(`${pesquisa}`,);
+
+
+    Postagem.find({ titulo: { $all: re } }).lean().then((postagens) => {
 
         if (postagens) {
-            console.log("achei algo " + postagens)
+
             res.render("postagem/busca", { postagens: postagens })
 
         } else {
@@ -732,6 +776,12 @@ app.get("/remove/:id", (req, res, next) => {
     var cart = new Cart(req.session.cart ? req.session.cart : {})
 
 
+
+
+
+
+
+
     cart.removeItem(productId)
     req.session.cart = cart
     res.redirect("/shopping-cart")
@@ -745,7 +795,7 @@ app.get("/remove/:id", (req, res, next) => {
 app.post("/resposta", (req, res) => {
 
     var id = req.query.id
- console.log('CREATED')
+    console.log('CREATED')
     setTimeout(() => {
         var filtro = {
             "order.id": id
@@ -768,7 +818,7 @@ app.post("/resposta", (req, res) => {
                         if (pagamentos) {
                             console.log(pagamentos.IdUsuario)
                             pagamentos.Status = "Pagamento Aprovado, Seu pedido esta sendo Preparado"
-                            pagamentos. StatusV = 1
+                            pagamentos.StatusV = 1
                             pagamentos.save().then(() => {
 
                                 console.log("tmj junto doug fiz a boa do salvamento")
@@ -864,12 +914,12 @@ app.post("/Pedido", async (req, res, next) => {
         IdUsuario: req.user._id,
         cart: cart,
         Status: stt,
-        cpf:req.body.cpf,
-        cidade:req.body.cidade,
-        NomeCliente:req.body.nome,
-        email:req.user.email
+        cpf: req.body.cpf,
+        cidade: req.body.cidade,
+        NomeCliente: req.body.nome,
+        email: req.user.email
 
-       
+
     }
 
 
@@ -959,7 +1009,7 @@ app.get("/Sobre", (req, res) => {
 })
 
 
-app.get("/perfil", (req, res,next) => {
+app.get("/perfil", (req, res, next) => {
 
     Pagamentos.find({ IdUsuario: req.user._id }, function (err, orders) {
 
@@ -970,16 +1020,16 @@ app.get("/perfil", (req, res,next) => {
         }
         var cart
         orders.forEach(function (order) {
-              cart = new Cart(order.cart)
+            cart = new Cart(order.cart)
 
-              order.items = cart.generateArray()
+            order.items = cart.generateArray()
         });
-  
-   var nome = req.user.nome
-   var email = req.user.email
-   
- 
-  res.render("Usuarios/Compra",{orders:orders , nome:nome , email:email})
+
+        var nome = req.user.nome
+        var email = req.user.email
+
+
+        res.render("Usuarios/Compra", { orders: orders, nome: nome, email: email })
     }).lean();
 
 
@@ -994,9 +1044,9 @@ app.get("/perfil", (req, res,next) => {
 })
 
 
-app.get("/vendas", (req, res,next) => {
-var st = 1
-    Pagamentos.find({ StatusV: st }, function (err, orders) {
+app.get("/vendas", (req, res, next) => {
+    var st = 1
+    Pagamentos.find({ StatusV: st }, function (err, orders, pag) {
 
         if (err) {
 
@@ -1005,16 +1055,16 @@ var st = 1
         }
         var cart
         orders.forEach(function (order) {
-              cart = new Cart(order.cart)
+            cart = new Cart(order.cart)
 
-              order.items = cart.generateArray()
+            order.items = cart.generateArray()
         });
-  
-   var nome = req.user.nome
-   var email = req.user.email
-   
- 
-  res.render("Usuarios/VendasA",{orders:orders , nome:nome , email:email})
+
+        var nome = req.user.nome
+        var email = req.user.email
+
+
+        res.render("Usuarios/VendasA", { orders: orders, nome: nome, email: email })
     }).lean();
 
 
@@ -1029,10 +1079,10 @@ var st = 1
 })
 
 
-app.get("/home",(req,res)=>{
+app.get("/home", (req, res) => {
 
 
-res.render("Sobre/home")
+    res.render("Sobre/home")
 
 
 
@@ -1048,57 +1098,57 @@ res.render("Sobre/home")
 
 
 
-app.get("/patrocinadores", (req,res ) =>{
+app.get("/patrocinadores", (req, res) => {
 
- Patrocinador.find().lean().then((patrocinador)=>{
+    Patrocinador.find().lean().then((patrocinador) => {
 
- if (patrocinador){
-    res.render("Sobre/patrocinadores" , {patrocinador:patrocinador})
+        if (patrocinador) {
+            res.render("Sobre/patrocinadores", { patrocinador: patrocinador })
 
- }else{
-    res.render("Sobre/patrocinadores" )
+        } else {
+            res.render("Sobre/patrocinadores")
 
- }
-
-
-    
- })
+        }
 
 
 
-   
+    })
+
+
+
+
 
 })
 
-app.get("/receita", (req,res)=>{
-const cat = 1
-    Postagem.find({ slug: cat }).lean().then((postagem)=>{
+app.get("/receita", (req, res) => {
+    const cat = 1
+    Postagem.find({ slug: cat }).lean().then((postagem) => {
 
 
- if (postagem){
+        if (postagem) {
 
- res.render("postagem/Receita", {postagem:postagem})
-
-
-
-
- }else{
+            res.render("postagem/Receita", { postagem: postagem })
 
 
 
 
-
- }
-
+        } else {
 
 
 
-    }).catch((err)=>{
+
+
+        }
+
+
+
+
+    }).catch((err) => {
 
         req.flash("error_msg", "Nenhum Produto Cadastrado Nessa Categoria " + err)
         res.redirect("/produto")
 
-        
+
     })
 
 
@@ -1136,12 +1186,34 @@ app.get("/receita/:id", (req, res) => {
 
 
 
+app.post("/removeVenda", (req, res) => {
+
+    Pagamentos.remove({ _id: req.body.id }).then(() => {
+
+
+        req.flash("success_msg", "Venda Deletada Deletada Com Sucesso ")
+        res.redirect("/vendas")
+
+    }).catch((error) => {
+
+        req.flash("error_msg", "Erro ao deletar a Venda Deletada Com Sucesso " + error)
+        res.redirect("/vendas")
+    })
 
 
 
 
 
-app.get("/sobrenos", (req,res )=>{
+
+
+
+
+})
+
+
+
+
+app.get("/sobrenos", (req, res) => {
 
     res.render("Sobre/sobrenos")
 

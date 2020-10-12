@@ -11,7 +11,15 @@
 -->
 
 
-
+<head>
+  <style>
+    a:link {
+  
+   color: black;
+  
+}
+  </style>
+</head>
 
 <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -45,9 +53,8 @@
 
 
 
-<h2 class="mt-4">Pagina de Produtos</h2>
-<a href="/receita">
-<button type="button" style="margin-top:2%;" class="btn btn-success">Produtos Controlados</button>
+<h2 class="mt-4">Farmácia Veterinária</h2>
+
 </a>
 <br>
 <br>
@@ -103,20 +110,29 @@
     {{#each postagens  }}
   
     <div class="col mb-4">
-    
+    <a href="/postagens/{{_id}}" >
         <div class="card ">
 
-
+  
 
            <div class="card-body">
             <div >
+            
              <img src="upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
+        </a> 
                 <div class="captionText">
+                     <a href="/postagens/{{_id}}" >
+
                     <h3 class="mt-2">{{titulo}}</h3>
+         
                     <h2>R$: {{preco}}</h2>
-                    <p><a href="/postagens/{{_id}}" class="btn btn-primary mt-4" role="button">Comprar</a>  </p>
+                     </a>       
+                    
+                    
                 </div>
+                   
             </div>
+        
         </div>
 
       <!--

@@ -56,6 +56,14 @@
                 {{/each}}
             </select>
 
+
+<select name="categoria2" class="custom-select mt-4">
+                {{#each categoria}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
             <input type="file" name="Foto" class="mt-4"> <br>
 
             <button class="btn btn-success mt-3" type="submit">Editar Produto</button>
