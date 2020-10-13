@@ -386,7 +386,6 @@ app.get("/categorias/:id", (req, res) => {
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
                 var cao =  0
                     if( categoria._id == "5f850d55f6c54937705e43ef"){
 
@@ -401,11 +400,6 @@ app.get("/categorias/:id", (req, res) => {
                 res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria, cao: cao }) 
 
 
-=======
-
-
-                res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria })
->>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 =======
 
 
@@ -1242,7 +1236,6 @@ app.get("/sobrenos", (req, res) => {
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 
 app.get("/pets", (req, res) => {
 
@@ -1253,8 +1246,6 @@ app.get("/pets", (req, res) => {
 
 
 
-=======
->>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 =======
 >>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 //rotas Usuario 
