@@ -1,0 +1,117 @@
+<!-- 
+
+<div class="jumbotron">
+    <h1 class="display-4">VSS</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <a class="btn btn-primary btn-lg" href="/usuarios/registro" role="button">Criar Conta </a>
+</div>
+-->
+
+
+
+
+
+
+
+
+<h2 class="mt-4">Medicamento Controlados: </h2>
+
+<br>
+<br>
+<br>
+
+<!--
+<div class="card-deck">
+    {{#each postagens}}
+
+    <div class="card " style="width: 18rem;">
+        <img src="upload/{{nomeImagem}}" class="card-img-top" alt="...">
+        <div class="card-body  ">
+            <h5 class="card-title">{{titulo}}</h5>
+            <p class="card-text">{{conteudo}}</p>
+            <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
+
+
+   
+    {{/each}}
+
+
+
+</div>
+
+<div class="row row-cols-1 row-cols-md-5">
+     
+    <div class="col mb-4 ">
+       {{#each postagens}}
+        <div class="card mt-3">
+            <img src="upload/{{nomeImagem}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{titulo}}</h5>
+                <p class="card-text">T{{conteudo}}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+       
+        </div>
+      {{else}}
+        <h5>Nenhuma Postagem</h5>
+
+
+     
+ 
+    </div>
+   {{/each}}
+</div>
+-->
+
+  
+<div class="row row-cols-1 row-cols-md-3">
+    {{#each postagem }}
+  
+    <div class="col mb-4">
+    
+        <div class="card ">
+
+
+
+           <div class="card-body">
+            <div >
+             <img src="upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
+                <div class="captionText">
+                    <h3 class="mt-2">{{titulo}}</h3>
+                    <h2>R$: {{preco}}</h2>
+                    <p><a href="/receita/{{_id}}" class="btn btn-primary mt-4" role="button">Verificar</a>  </p>
+                </div>
+            </div>
+        </div>
+
+      <!--
+  
+            <img src="upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{titulo}}</h5>
+                <p class="card-text">{{conteudo}}</p>
+                   //teste
+                   
+                     <a href="/postagens/{{_id}}" class="btn btn-primary">Comprar</a>
+            </div>
+
+
+                   -->
+        </div>
+     
+      
+    </div>
+ {{else}}
+ <h5>Nenhum Produto Para Ser exibido :</h5>
+    {{/each}}
+   
+ 
+</div>
+
+
+

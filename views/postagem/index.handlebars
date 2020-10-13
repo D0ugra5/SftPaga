@@ -1,0 +1,378 @@
+<!--
+
+<div class="card mb-3">
+ 
+  <input type="hidden" name="id" value="{{postagem._id}}">
+  <form action="" method="GET">
+    <img src="/upload/{{postagem.nomeImagem}}" class="card-img-top img-thumbnail rounded w-25 p-3" alt="...">
+    <div class="card-body">
+      <input type="hidden" name="id" value="{postagem._id}}">
+      <h5 class="card-title">{{postagem.titulo}}</h5>
+      <h4>Preço</h4>
+      <div name="preco">{{postagem.preco}} </div>
+    
+     
+      <p class="card-text">{{postagem.descricao}}</p>
+      <p class="card-text"><small class="text-muted">{{postagem.data}}</small></p>
+    </div>
+ 
+
+  </form>
+<a href="/add-cart/{{postagem._id}}">
+    <button class="btn btn-success">Comprar</button>
+</a>
+
+
+
+
+  <form action="/cep/consulta" method="POST">
+
+    <div class="card">
+
+
+
+      <h1>Pesquisar Cep</h1>
+      <div class="card-body">
+        <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+   
+
+        <input id="cep" name="cep" type="text" class="form-control" >
+
+        <button class="btn btn-success mt-4">Pesquisar</button>
+      </div>
+
+      <h5>{{Valor}}</h5>
+      {{>CepBox}}
+    
+    </div>
+
+  </form>
+
+  
+
+
+
+
+
+</div>
+  
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{postagem.titulo}}</h5>
+    <img src="/upload/{{postagem.nomeImagem}}" alt=""  class="img-thumbnail">
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+
+      <h4>R$: {{postagem.preco}}</h4>
+      <h5 class="mt-4">Descrição : </h5>
+      <p class="card-text">{{postagem.descricao}}</p>
+     <div class="card">
+     
+      <p>Conteudo Do Embalagem : </p>
+      <p class="card-text"><small class="text-muted">{{postagem.conteudo}}</small></p>
+</div>
+      <a href="/add-cart/{{postagem._id}}">
+        <button class="btn btn-success btn-lg mt-4" >Comprar</button>
+      </a>
+
+    </div>
+
+
+
+    <form action="/cep/consulta" method="POST">
+
+
+
+
+      <h1 class="mt-4">Pesquisar Cep</h1>
+
+      <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+
+
+      <input id="cep" name="cep" type="text" class="form-control">
+
+      <button class="btn btn-success mt-4">Pesquisar</button>
+  </div>
+
+  <h5>{{Valor}}</h5>
+  {{>CepBox}}
+
+
+
+  </form>
+
+</div>
+</div>
+-->
+
+<head>
+
+
+  <style>
+
+
+
+    .divguizaoPica {
+      margin-left: 50%;
+      margin-top: 2%;
+      background-color: #ffffff;
+      ;
+      float: right;
+      height: 80%;
+      left: 80%;
+      width: 30%;
+      margin-top: 50px;
+      border: 1px solid;
+      border-color: rgb(190, 190, 190);
+      ;
+      margin-top: 5%;
+
+
+    }
+
+
+    .info {
+      margin-left: 6%;
+      margin-top: 5%;
+
+
+
+    }
+
+
+    hr {
+      margin-left: 6%;
+      float: left;
+
+      border-color: rgb(218, 218, 218);
+      box-sizing: border-box;
+      width: 50%;
+    }
+
+    .cepinho {
+      padding: 11%;
+    }
+
+    .espacito {
+      margin-left: 7%;
+    }
+
+
+    .zoom {
+
+      background-color: green;
+      transition: transform .2s;
+      /* Animation */
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .zoom:hover {
+      transform: scale(1.5);
+      /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+    .imgdoZoom {
+
+      width: 30%;
+      height: 30%;
+      position: absolute;
+      margin-top: 4%;
+    }
+
+    .infoProd {
+      margin-left: 7%;
+      margin-right: 50%;
+      background-color: rgb(35, 113, 141)63);
+    }
+
+    .espacim {
+      float: left;
+    }
+  </style>
+
+
+
+  <!-- BOTAO -->
+  <style>
+    .button {
+      display: inline-block;
+      border-radius: 7px;
+      background-color: #1b9121bd;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 10px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+
+    .botaoCompra {
+      float: center;
+    }
+
+    .infoProd {
+      text-align: justify;
+      margin-left: 7%;
+      margin-right: 50%;
+      background-color: rgb(35, 113, 141)63);
+    }
+  </style>
+
+
+</head>
+
+
+<br>
+<br>
+<br>
+
+
+
+
+<div class="card">
+
+
+  <div class="imgdoZoom">
+
+    <div class="zoom">
+
+      <img src="/upload/{{postagem.nomeImagem}}" alt="" width="100%" height="100%">
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="divguizaoPica">
+  <tr>
+
+    <td>
+      <h2>{{postagem.titulo}}</h2>
+
+
+    </td>
+
+  </tr>
+
+
+
+
+
+
+  <div class="cepinho">
+
+{{#if teste}}
+<p>Você precisa de uma receita médica para comprar, só disponíveis em nossa loja presencial. Rua: Konrad Adenauer 911 – Tarumã
+82.821-020 - Curitiba PR. </p>
+<p> Segunda a Sexta-Feira : 09:00 às 18:00 horas<br>
+Sábados: 09:00 às 12:00 horas</p>
+{{else}}
+    <div class="form-group row">
+     
+
+
+   
+
+
+
+
+      <form action="/cep/consulta" method="POST">
+       <h4>R$: {{postagem.preco}}</h4>
+
+       <p style=""> 5% de desconto para produtor rural </p>
+
+        <h4 class="mt-4">Pesquisar Cep</h4>
+
+       <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+
+
+        <input id="cep" style="width: 85%;" name="cep" type="text" class="form-control">
+
+        <button style="width: 120px" class="btn btn-success mt-4">Pesquisar</button>
+
+      </form>
+
+      <h5>{{Valor}}</h5>
+      {{>CepBox}}
+      
+
+<form action="/add-cart/" method="POST">
+
+   <div class="col-xs-2">
+
+        <div class="espacim">
+          <label for="ex1">
+            <h4> Quantidade: </h4>
+        </div>
+        <input class="form-control" name="qtyQ" id="ex1" type="number" min="1" max="50">
+      </div>
+
+
+
+
+<input type="hidden" name="id" value="{{postagem._id}}" >
+        <button type="submit" style="width: 120px; height: 50px; margin-top:10px;"
+          class="btn btn-success">Comprar</button>
+
+
+    
+      </form>
+    </div>
+
+    <!-- BOTAO -->
+
+
+{{/if}}
+  </div>
+</div>
+
+<div class="info">
+
+  <br>
+
+  <h3>Informações</h3>
+
+
+</div>
+
+
+<hr>
+</hr>
+<br>
+<div class="infoProd" style="white-space: pre-wrap">
+  <p class="card-text">{{postagem.descricao}}</p>
+</div>
