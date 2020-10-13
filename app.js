@@ -397,16 +397,12 @@ app.get("/categorias/:id", (req, res) => {
 
                     }
 
-                res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria, cao: cao }) 
+                res.render("Categoria/tiposC", { postagens: postagens, categoria:categoria, cao: cao }) 
 
 
 
 
 
-                res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria })
-
-
-                res.render("Categoria/tiposC", { postagens: postagens, categoria: categoria })
 
 
 
