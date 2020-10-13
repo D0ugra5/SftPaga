@@ -111,9 +111,12 @@
 
 
   <style>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
     .divguizaoPica {
       margin-left: 50%;
       margin-top: 2%;
@@ -183,6 +186,10 @@
       margin-top: 4%;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
     .infoProd {
       margin-left: 7%;
       margin-right: 50%;
@@ -192,6 +199,21 @@
     .espacim {
       float: left;
     }
+<<<<<<< HEAD
+=======
+=======
+   .infoProd{
+        margin-left: 7%;
+        margin-right: 50%;
+        background-color: rgb(35, 113, 141)63);
+    }
+
+    .espacim{
+      float: left;
+    }
+    
+>>>>>>> 507eaad8fc2a866c8e49d76786224d86e8c27609
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
   </style>
 
 
@@ -275,13 +297,20 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 <div class="divguizaoPica">
   <tr>
 
     <td>
+<<<<<<< HEAD
       <h2>{{postagem.titulo}}</h2>
+=======
+      <h3>{{postagem.titulo}}</h3>
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 
 
     </td>
@@ -296,6 +325,7 @@
   <div class="cepinho">
 
 {{#if teste}}
+<<<<<<< HEAD
 <p>Você precisa de uma receita médica para comprar, só disponíveis em nossa loja presencial. Rua: Konrad Adenauer 911 – Tarumã
 82.821-020 - Curitiba PR. </p>
 <p> Segunda a Sexta-Feira : 09:00 às 18:00 horas<br>
@@ -303,6 +333,12 @@ Sábados: 09:00 às 12:00 horas</p>
 {{else}}
     <div class="form-group row">
      
+=======
+<p>Vai ate a loja porra </p>
+{{else}}
+    <div class="form-group row">
+      <h4>R$: {{postagem.preco}}</h4>
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 
 
    
@@ -311,6 +347,7 @@ Sábados: 09:00 às 12:00 horas</p>
 
 
       <form action="/cep/consulta" method="POST">
+<<<<<<< HEAD
        <h4>R$: {{postagem.preco}}</h4>
 
        <p style=""> 5% de desconto para produtor rural </p>
@@ -323,6 +360,17 @@ Sábados: 09:00 às 12:00 horas</p>
         <input id="cep" style="width: 85%;" name="cep" type="text" class="form-control">
 
         <button style="width: 120px" class="btn btn-success mt-4">Pesquisar</button>
+=======
+
+        <h4 class="mt-4">Pesquisar Cep</h4>
+
+        <input type="hidden" name="idConsulta" value="{{postagem._id}}">
+
+
+        <input id="cep" name="cep" type="text" class="form-control">
+
+        <button class="btn btn-success mt-4">Pesquisar</button>
+>>>>>>> ffeb9e407e714ed7a4e9eeadbdb7de66c4f93c02
 
       </form>
 
