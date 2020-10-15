@@ -114,11 +114,12 @@ router.get('/categorias/edit/:id', eAdmin, (req, res) => {
 
 
 })
-router.post('/categorias/edit', eAdmin, (req, res) => {
+router.post('/categorias/edit', upload.single("Foto") ,eAdmin,(req, res) => {
   Categoria.findOne({ _id: req.body.id }).then((categoria) => {
 
     categoria.nome = req.body.Nome
     categoria.slug = req.body.slug
+    categoria.imgCat = req.file.filename
     categoria.save().then(() => {
       req.flash("success_msg", "Categoria Editada Com Sucesso!")
       res.redirect("/admin/categorias")
@@ -130,7 +131,7 @@ router.post('/categorias/edit', eAdmin, (req, res) => {
 
     })
   }).catch((err) => {
-    req.flash("error_msg", "Houve um erro ao editar a categoria")
+    req.flash("error_msg", "Houve um erro ao editar a categoria" + err)
     res.redirect("/admin/categorias")
   })
 })
