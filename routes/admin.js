@@ -114,7 +114,7 @@ router.get('/categorias/edit/:id', eAdmin, (req, res) => {
 
 
 })
-router.post('/categorias/edit', upload.single("Foto") ,eAdmin,(req, res) => {
+router.post('/categorias/edit', upload.single("Foto"), eAdmin, (req, res) => {
   Categoria.findOne({ _id: req.body.id }).then((categoria) => {
 
     categoria.nome = req.body.Nome
@@ -170,6 +170,66 @@ router.post("/patrocinador/deletar", eAdmin, (req, res) => {
 
 
 })
+router.get("/patrocinador/edit/:id", (req, res) => {
+
+  Patrocinador.findOne({ _id: req.params.id }).lean().then((patrocinador) => {
+
+
+
+    res.render("admin/editPatrocinador", { patrocinador: patrocinador })
+
+
+
+
+
+
+
+  })
+
+
+
+
+
+
+})
+
+router.post("/patri/edit2",upload.single("Foto"), (req,res)=>{
+
+Patrocinador.findOne({_id:req.body.id}).then((patri)=>{
+
+patri.nome = req.body.nome
+patri.descPt = req.body.descPt
+patri.link = req.body.link
+patri.imgPt = req.file.filename
+
+
+patri.save().then(() => {
+
+  req.flash("success_msg", "Seu Patrocinador foi Alterado com Sucesso")
+  res.redirect("/admin/mostra")
+
+}).catch((err) => {
+
+  req.flash("error", "Patrocinador nao foi editado .... Falha" + err)
+  res.redirect("/admin/mostra")
+
+
+
+
+})
+
+
+
+
+
+
+})
+
+
+
+
+
+} )
 
 
 
@@ -345,7 +405,8 @@ router.post("/patri", eAdmin, upload.single("imgPt"), (req, res) => {
   const novoPatri = {
     nome: req.body.nome,
     descPt: req.body.descPt,
-    imgPt: req.file.filename
+    imgPt: req.file.filename,
+    link: req.body.link
 
 
   }

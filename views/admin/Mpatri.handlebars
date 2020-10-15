@@ -14,6 +14,17 @@
     <img  src="/upload/{{imgPt}}" width="250" height="250"  class="img-thumbnail rounded float-right">
     
   </div>  
+
+
+
+
+  
+
+<a href="/admin/patrocinador/edit/{{_id}}">
+<button class="btn btn-success mt-4">Editar</button>
+</a>
+
+
 <form action="/admin/patrocinador/deletar" method="POST">
            <input type="hidden" name="id" value="{{_id}}">
             <button type="submit" class="btn btn-danger mt-2">Deletar Patrocinador  </button>

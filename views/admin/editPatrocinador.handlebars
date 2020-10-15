@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-body">
+
+        <h4>Novo Patrocinador</h4>
+        <form action="/admin/patri/edit2" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" value="{{patrocinador._id}}">
+            <label for="titulo">Nome:</label>
+            <input type="text" name="nome" class="form-control" value="{{patrocinador.nome}}">
+                  <label for="desc">Descrição:</label>
+            <input type="text" name="descPt" class="form-control" value="{{patrocinador.descPt}}">
+
+
+              <label for="desc">Link:</label>
+            <input type="text" name="link" class="form-control" value="{{patrocinador.link}}">
+
+            <input class="mt-4"  type="file" name="Foto">
+      <br>
+
+                    <button class="btn btn-success mt-4">Editar</button>
+        </form>
+
+
+    </div>
+</div>
