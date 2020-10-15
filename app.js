@@ -277,7 +277,7 @@ app.get('/produto', (req, res) => {
 
 
     const cat = 2
-    Postagem.find({ slug: cat }).lean().sort({ data: "desc" }).limit(20).then((postagens) => {
+    Postagem.find({ slug: cat }).lean().sort({ data: "desc" }).limit(50).then((postagens) => {
 
 
 
