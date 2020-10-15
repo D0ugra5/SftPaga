@@ -13,6 +13,11 @@
 
 <head>
   <style>
+
+    #btnPag{
+      margin-top: 50%;
+  float: top;
+    }
     a:link {
 
       color: black;
@@ -65,11 +70,7 @@
 
 <h2 class="mt-4">Farmácia Veterinária</h2>
 
-<a href="/categorias/5f850d55f6c54937705e43ef">
-  <button type="button" class="btn btn-outline-success">Pets</button>
 
-
-</a>
 <br>
 <br>
 <br>
@@ -166,9 +167,41 @@
 
 
 </div>
+
 {{else}}
 <h5>Nenhum Produto Para Ser exibido :</h5>
 {{/each}}
 
 <a href=""></a>
 </div>
+
+<div class="btnPag">
+ <a href="/produto4">
+                <button style="float: right;" onclick="funcao_a()" class="btn btn-primary mr-1" role="button" >5</button>
+                </a>
+                  <a href="/produto3">
+                <button style="float: right;" onclick="funcao_a()" class="btn btn-primary mr-1" role="button" >4</button>
+                </a>
+                 <a href="/produto2">
+                <button style="float: right;" onclick="funcao_a()" class="btn btn-primary mr-1" role="button" >3</button>
+                </a>
+                 <a href="/produto1">
+                <button  style="float: right;" onclick="clickT()" class="btn btn-primary mr-1" role="button" >2</button>
+                </a>
+               
+              
+                <a href="/produto">
+                <button style="float: right;" onclick="funcao_a()" class="btn btn-primary mr-1"  role="button" >1</button> 
+
+                </a>
+
+               
+               
+</div>
+<script>
+  function clickT(){
+$(document.getElementById("bt2")).css('border-color', '#00ff00')
+console.log("teste")
+}
+
+</script>

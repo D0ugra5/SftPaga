@@ -269,19 +269,16 @@ app.get("/", (req, res) => {
 
 app.get('/produto', (req, res) => {
 
-
-
-
-
-
-
-
     const cat = 2
-    Postagem.find({ slug: cat }).lean().sort({ data: "desc" }).limit(50).skip(50).then((postagens) => {
+    var x  =  0 
+ 
+
+    
+    Postagem.find({ slug: cat}).lean().skip(10).sort({ data: "desc" }).limit(30).then((postagens) => {
 
 
 
-
+     
 
         if (req.isAuthenticated()) {
 
@@ -313,6 +310,183 @@ app.get('/produto', (req, res) => {
     })
 
 })
+
+app.get('/produto1', (req, res) => {
+
+    const cat = 2
+    var x  =  0 
+ 
+
+    
+    Postagem.find({ slug: cat}).lean().skip(10).sort({ data: "desc" }).skip(30).limit(30).then((postagens) => {
+
+
+
+     
+
+        if (req.isAuthenticated()) {
+
+            const NomeCliente = req.user.nome
+            const Admintrador = req.user.eAdmin
+
+
+
+
+
+
+
+            res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
+
+        } else {
+            res.render("index", { postagens: postagens })
+
+
+
+
+        }
+
+
+
+
+
+    }).catch((error) => {
+        req.flash("error_msg", "Houve um erro interno")
+    })
+
+})
+
+
+app.get('/produto2', (req, res) => {
+
+    const cat = 2
+    var x  =  0 
+ 
+
+    
+    Postagem.find({ slug: cat}).lean().skip(10).sort({ data: "desc" }).limit(30).skip(60).then((postagens) => {
+
+
+
+     
+
+        if (req.isAuthenticated()) {
+
+            const NomeCliente = req.user.nome
+            const Admintrador = req.user.eAdmin
+
+
+
+
+
+
+
+            res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
+
+        } else {
+            res.render("index", { postagens: postagens })
+
+
+
+
+        }
+
+
+
+
+
+    }).catch((error) => {
+        req.flash("error_msg", "Houve um erro interno")
+    })
+
+})
+app.get('/produto3', (req, res) => {
+
+    const cat = 2
+    var x  =  0 
+ 
+
+    
+    Postagem.find({ slug: cat}).lean().skip(10).sort({ data: "desc" }).limit(30).skip(90).then((postagens) => {
+
+
+
+     
+
+        if (req.isAuthenticated()) {
+
+            const NomeCliente = req.user.nome
+            const Admintrador = req.user.eAdmin
+
+
+
+
+
+
+
+            res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
+
+        } else {
+            res.render("index", { postagens: postagens })
+
+
+
+
+        }
+
+
+
+
+
+    }).catch((error) => {
+        req.flash("error_msg", "Houve um erro interno")
+    })
+
+})
+app.get('/produto4', (req, res) => {
+
+    const cat = 2
+    var x  =  0 
+ 
+
+    
+    Postagem.find({ slug: cat}).lean().skip(10).sort({ data: "desc" }).limit(30).skip(120).then((postagens) => {
+
+
+
+     
+
+        if (req.isAuthenticated()) {
+
+            const NomeCliente = req.user.nome
+            const Admintrador = req.user.eAdmin
+
+
+
+
+
+
+
+            res.render("index", { postagens: postagens, NomeCliente: NomeCliente, Admintrador: Admintrador })
+
+        } else {
+            res.render("index", { postagens: postagens })
+
+
+
+
+        }
+
+
+
+
+
+    }).catch((error) => {
+        req.flash("error_msg", "Houve um erro interno")
+    })
+
+})
+
+
 
 
 
@@ -609,7 +783,7 @@ app.post('/cep/consulta', (req, res) => {
                 nVlAltura: postagens.altura,
                 nVlLargura: postagens.largura,
                 nCdServico: "04014  ",
-                nVlDiametro: postagens.diametro,
+                nVlDiametro: "0",
             };
 
             calcularPrecoPrazo(args2).then((response2) => {

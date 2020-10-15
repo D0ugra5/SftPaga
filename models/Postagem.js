@@ -83,7 +83,7 @@ const Postagem = new Schema({
     diametro:{
 
          type:Number,
-         required:true
+        
 
 
     },

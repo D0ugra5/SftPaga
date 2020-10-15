@@ -44,10 +44,10 @@
 
 
 
-            <label for="Preço">Diametro</label>
-            <input type="text" name="diametro" class="form-control" {{postagem.diametro}}>
+           
+            <input type="hidden" name="diametro" class="form-control" {{postagem.diametro}}>
 
-            <label for="categoria"></label>
+            <label for="categoria">Categoria :</label>
             <select name="categoria" class="custom-select">
                 {{#each categoria}}
                 <option value="{{_id}}">{{nome}}</option>
@@ -56,8 +56,8 @@
                 {{/each}}
             </select>
 
-
-<select name="categoria2" class="custom-select mt-4">
+ <label for="categoria">SubCategoria :</label>
+<select name="categoria2" class="custom-select mt-1">
                 {{#each categoria}}
                 <option value="{{_id}}">{{nome}}</option>
                 {{else}}
