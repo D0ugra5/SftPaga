@@ -30,6 +30,9 @@ const router = require('./routes/usuario')
 //Patrocinadores
 require('./models/Patrocinador')
 const Patrocinador = mongoose.model("Patrocinador")
+//noticias
+require('./models/Noticias')
+const Noticias = mongoose.model("noticias")
 //Categorias 
 require("./models/Categoria")
 const Categoria = mongoose.model("categorias")
@@ -1415,7 +1418,16 @@ app.get("/pets", (req, res) => {
     res.render("Sobre/pets")
 
 })
+app.get('/ntcMostra',(req,res)=>{
+Noticias.find().lean().then((ntc)=>{
+    res.render('noticia_evt/ntc',{ntc:ntc})
 
+})
+
+
+
+
+})
 
 
 

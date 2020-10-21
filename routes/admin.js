@@ -9,6 +9,9 @@ const { eAdmin } = require("../helpers/eAdmin")
 require('../models/Patrocinador')
 const Patrocinador = mongoose.model("Patrocinador")
 //
+require('../models/Noticias')
+const Noticias = mongoose.model("noticias")
+//
 require('../models/Postagem')
 const Postagem = mongoose.model("postagens")
 
@@ -413,12 +416,74 @@ router.post("/patri", eAdmin, upload.single("imgPt"), (req, res) => {
 
   new Patrocinador(novoPatri).save().then(() => {
 
-    console.log("Salvei namoralzinha")
+   
     res.redirect("/admin/mostra")
 
 
   })
 
+
+
+
+})
+
+
+router.get('/ntcCad',(req,res)=>{
+
+
+res.render('admin/addntc')
+
+
+})
+
+router.post('/ntcCad2', upload.single("Foto"),(req,res)=>{
+
+const novaNoticia={
+nome : req.body.Nome,
+Descript:req.body.descr,
+imgNtc:req.file.filename
+
+
+
+}
+
+new Noticias (novaNoticia).save().then(()=>{
+
+ req.flash('success_msg',"Noticias/Evento Salva com Sucesso ")
+ res.redirect('/admin/ntc')
+
+
+
+}).catch((err)=>{
+
+  req.flash('success_msg',"Noticias/Evento Não foram Salvas Erro " +err)
+  res.redirect('/ntcCad')
+
+
+
+})
+
+
+  
+})
+
+
+
+
+
+router.get("/ntc" ,(req,res)=>{
+Noticias.find().lean().then((noticias)=>{
+
+
+  res.render('admin/NtcAd',{noticias:noticias})
+
+
+
+
+
+
+
+})
 
 
 
@@ -436,6 +501,93 @@ router.get("/mostra", eAdmin, (req, res) => {
 
 })
 
+
+router.get('/ntcDelete/:id', (req,res)=>{
+
+Noticias.remove({_id:req.params.id}).then(()=>{
+
+req.flash('success_msg',"A noticia Foi apagada")
+res.redirect("/admin/ntc")
+
+})
+
+
+
+})
+
+router.get('/ntcEdit/:id', (req,res)=>{
+
+  Noticias.findOne({_id : req.params.id}).lean().then((ntc)=>{
+  
+  if(ntc){
+  
+  res.render('admin/editntc',{ntc:ntc})
+  
+  
+  
+  }
+  
+  
+  
+  
+  })
+})
+
+router.post("/editntcc",upload.single("Foto"), (req,res)=>{
+var teste = req.body.id
+
+ 
+Noticias.findOne({ _id: req.body.id}).then((ntc)=>{
+
+  ntc.nome = req.body.nome
+
+  ntc.Descript = req.body.descr
+  ntc.imgNtc = req.file.filename
+  
+  
+  
+  ntc.save().then(()=>{
+  
+  
+  req.flash("success_msg","Salvamento Concluido ")
+  res.redirect('/admin/ntc')
+  
+  
+  
+  
+  }).catch(()=>{
+  
+    req.flash("error_msg","ocorreu um erro ao aplicar o salvamento Contante a equipe  ")
+  res.redirect('/admin/ntc')
+  
+  })
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+})
+
+  
+  
+  
+  
+  
+  
 
 
 //exports para outros models

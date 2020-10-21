@@ -1,0 +1,29 @@
+<style>
+    .areaTexto {
+        padding: 5%;
+        background-color: #d1be9e;
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<div class="comeco">
+
+    <img src="../Sobre/cavaloBanner3.jpg" width="100%" height="70%">
+
+</div>
+
+{{#each ntc}}
+<div class="areaTexto">
+  
+      <h2>{{nome}}</h2>
+    <p>
+        {{Descript}}
+    </p>
+      <div class="card-body">
+        <img src="/upload/{{imgNtc}}" width="50%" height="50%">
+     </div>
+</div>
+
+{{else}}
+
+{{/each}}

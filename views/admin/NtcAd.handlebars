@@ -1,0 +1,50 @@
+<a href="/admin/ntcCad">
+<button class="btn btn-success mt-4">Inserir Nova Noticia ou Evento</button>
+</a>
+
+
+{{#each noticias}}
+<div class="card mt-4 border border-success ">
+    <div class="card-body mt-4 ">
+         
+        <h4>Nome Da Noticia/Evento :{{nome}}</h4>
+        <p>Descrição:{{Descript}}</p>
+         <p>Data do Ultima Modificação:{{date}}</p>
+       <div class="card-body">
+     
+    <img  src="/upload/{{imgNtc}}" width="250" height="250"  class="img-thumbnail rounded float-right">
+    
+  </div>  
+
+
+
+
+  
+
+<a href="/admin/ntcEdit/{{_id}}">
+<button class="btn btn-success mt-4">Editar</button>
+</a>
+
+<br>
+
+<a href="/admin/ntcDelete/{{_id}}">
+
+<button  class="btn btn-danger mt-2">Deletar </button>
+
+</a>
+
+
+
+
+</div>
+   
+        
+    
+</div>
+
+
+{{else}}
+<br>
+<H1>Estamos Sem Noticias/Eventos ......</H1>
+{{/each}}
+

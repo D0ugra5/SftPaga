@@ -1,0 +1,15 @@
+<h1>Nova Noticia/Evento:</h1>
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/ntcCad2" method="POST" enctype="multipart/form-data">
+            <label for="nome">Nome :</label>
+            <input type="text" id="nome" name="Nome" placeholder="nome da Noticia/Evento" class="form-control">
+            <label for="slug">Descrição:</label>
+            <input type="text" id="descr" name="descr" placeholder="Descrição da Noticia/Evento" class="form-control">
+            <input class="mt-4"  type="file" name="Foto">
+         
+            <br>
+            <button type="submit" class="btn btn-success mt-4">Criar </button>
+        </form>
+    </div>
+</div>
