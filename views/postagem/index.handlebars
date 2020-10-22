@@ -282,7 +282,7 @@
       display: flex;
     }
 
-    .card{
+    .card2{
       float: left;
       margin-left: 30%;
       margin-top: 20%;
@@ -301,7 +301,7 @@
 <div  style="float: left;">
 
 
-  <div class="card" >
+  <div class="card2" >
 
 
       <div class="imgdoZoom" style="float: left;">
@@ -335,7 +335,6 @@
 
 
 
-
   <div class="cepinho">
 
 {{#if teste}}
@@ -346,8 +345,12 @@
 Sábados: 09:00 às 12:00 horas</p>
 
 {{else}}
+
+
+
     <div >
 
+    
       <form action="/cep/consulta" method="POST">
 
        <h4 >R$: {{postagem.preco}}</h4>
@@ -367,9 +370,15 @@ Sábados: 09:00 às 12:00 horas</p>
 
 
       </form>
-
-      <h5>{{Valor}}</h5>
+<br>
+            {{Valor}}
       {{>CepBox}}
+
+    </div>
+ 
+
+     
+     
       
 <br>
 
@@ -378,6 +387,7 @@ Sábados: 09:00 às 12:00 horas</p>
    <div class="col-xs-2">
 
         <div>
+          
           <label for="ex1">
             <h4 style="font-family: 'Yanone Kaffeesatz', sans-serif;"> Quantidade: </h4>
         </div>
