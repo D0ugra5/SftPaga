@@ -13,11 +13,11 @@
 
 <head>
   <style>
-
-    #btnPag{
+    #btnPag {
       margin-top: 50%;
-  float: top;
+      float: top;
     }
+
     a:link {
 
       color: black;
@@ -26,130 +26,88 @@
   </style>
 </head>
 
-<div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+<body>
 
-      <img class="d-block w-100" src=" /img/cavaloBanner3.jpg" alt="First slide">
+
+  <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+
+        <img class="d-block w-100" src=" /img/cavaloBanner3.jpg" alt="First slide">
+      </div>
+
+
+
+
     </div>
-   
-
-
-  
-</div>
+  </div>
 
 
 
-
-<h2 class="mt-4">Farmácia Veterinária</h2>
-
-
-<br>
-<br>
-<br>
-
-<!--
-<div class="card-deck">
-    {{#each postagens}}
-
-    <div class="card " style="width: 18rem;">
-        <img src="upload/{{nomeImagem}}" class="card-img-top" alt="...">
-        <div class="card-body  ">
-            <h5 class="card-title">{{titulo}}</h5>
-            <p class="card-text">{{conteudo}}</p>
-            <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-    </div>
+  <h2 class="mt-4">Farmácia Veterinária</h2>
 
 
-   
-    {{/each}}
+  <br>
+  <br>
+  <br>
 
 
+  <div class="row row-cols-1 row-cols-md-3">
+    {{#each postagens  }}
 
-</div>
-
-<div class="row row-cols-1 row-cols-md-5">
-     
-    <div class="col mb-4 ">
-       {{#each postagens}}
-        <div class="card mt-3">
-            <img src="upload/{{nomeImagem}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{titulo}}</h5>
-                <p class="card-text">T{{conteudo}}</p>
-                <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-       
-        </div>
-      {{else}}
-        <h5>Nenhuma Postagem</h5>
-
-
-     
- 
-    </div>
-   {{/each}}
-</div>
--->
-
-
-<div class="row row-cols-1 row-cols-md-3">
-  {{#each postagens  }}
-
-  <div class="col mb-4">
-    <a href="/postagens/{{_id}}">
-      <div class="card ">
-
-
-
-        <div class="card-body">
-          <div>
-
-            <img src="upload/{{nomeImagem}}" width="200px" height="300" class="card-img-top" alt="...">
-    </a>
-    <div class="captionText">
+   <div class="col mb-4">
       <a href="/postagens/{{_id}}">
+        <div class="card ">
 
-        <h3 class="mt-2">{{titulo}}</h3>
 
-        <h2>R$: {{preco}}</h2>
-      </a>
 
+          <div class="card-body">
+            <div>
+
+              <img src="upload/{{nomeImagem}}" width="200px" height="300" class="card-img-top" alt="...">
+               </div>
+       </a>
+
+     
+
+    </div>
+    
+
+      <div class="captionText">
+        <a href="/postagens/{{_id}}">
+
+          <h3 class="mt-2">{{titulo}}</h3>
+
+          <h2>R$: {{preco}}</h2>
+        </a>
+      </div>
 
     </div>
 
   </div>
 
-</div>
 
-<!--
+ 
+
+  {{else}}
+
+  <h5>Nenhum Produto Para Ser exibido :</h5>
+  {{/each}}
+
+
   
-            <img src="upload/{{nomeImagem}}"  width="200px" height="300" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{titulo}}</h5>
-                <p class="card-text">{{conteudo}}</p>
-                   //teste
-                   
-                     <a href="/postagens/{{_id}}" class="btn btn-primary">Comprar</a>
-            </div>
 
 
-                   -->
-</div>
 
 
-</div>
 
-{{else}}
-<h5>Nenhum Produto Para Ser exibido :</h5>
-{{/each}}
+
 
 <a href=""></a>
 </div>
@@ -182,5 +140,6 @@
 $(document.getElementById("bt2")).css('border-color', '#00ff00')
 console.log("teste")
 }
-
 </script>
+
+</body>

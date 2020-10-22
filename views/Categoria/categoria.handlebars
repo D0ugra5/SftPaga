@@ -120,13 +120,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+    
+    
     <title>Document</title>
 
 
     <style>
+
+      body{
+        background-color: rgb(227, 255, 230);
+      }
+
+      
       .zoom {
         display: inline-block;
         background-color: green;
@@ -144,12 +155,6 @@
 
     
 
-      ul li {
-        display: inline-block;
-        margin-left: 10%;
-    }
-
-
 
 
         hr {
@@ -161,6 +166,70 @@
       width: 80%;
     }
 
+
+        .cards-list {
+          z-index: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+        }
+
+        .card {
+          margin: 30px auto;
+          width: 300px;
+          height: 300px;
+          border-radius: 40px;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+          cursor: pointer;
+          transition: 0.4s;
+        }
+
+        .card .card_image {
+          width: inherit;
+          height: inherit;
+          border-radius: 40px;
+        }
+
+        .card .card_image img {
+          width: inherit;
+          height: inherit;
+          border-radius: 40px;
+          object-fit: cover;
+        }
+
+        .card .card_title {
+          text-align: center;
+          border-radius: 0px 0px 40px 40px;
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 30px;
+          margin-top: -80px;
+          height: 40px;
+        }
+
+        .card:hover {
+          transform: scale(0.9, 0.9);
+          box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+            -5px -5px 30px 15px rgba(0,0,0,0.22);
+        }
+
+        .title-white {
+          color: white;
+        }
+
+        .title-black {
+          color: black;
+        }
+
+        @media all and (max-width: 500px) {
+          .card-list {
+            /* On small screens, we are no longer using row direction but column */
+            flex-direction: column;
+          }
+        }
+
+ 
   
     </style>
 
@@ -168,50 +237,43 @@
 </head>
 <body>
 
-<center>
 
-<br>
-<br>
-<br>
-  <br>
-  <img src="/img/cavalodog.jpg" style="border-radius: 50%;" width="30%" height="300px">
-  <br>
-</center>
+
 
 <br>
 
-<br>
-<br>
+
 <br>
 <br>
 <div style="text-align: center;">
-  <h4>
-    Categorias
-  </h4>
+  <h1 style="font-family: 'Yanone Kaffeesatz', sans-serif;">CATEGORIAS</h1>
   <br>
-  <p style="text-align: center;">
-    COMPLETO ESTOQUE DE MEDICAMENTOS PARA ANIMAIS
-  </p>
+
 </div>
+
 
 <hr>
 </hr>
 
 
-<!--  Categoria   -->
-<div>
- <ul>
-   {{#each categorias}}
-   <a  href="/categorias/{{_id}}">
-     <li style="padding:5%; margin-top:10%">
-              <div class="zoom">
 
-      <img src="/upload/{{imgCat}}"  width="130px"  >
-    <h5>{{nome}}</h5>
-
+<div class="cards-list" style="margin-top: 7%;">
+  {{#each categorias}}
+  <a  href="/categorias/{{_id}}" style="text-decoration:none; ">
+  <div class="card 1">
+    
+    <div class="card_image"> <img src="/upload/{{imgCat}}" /> </div>
+      <div class="card_title title-white" style="height:min-content">
+        <font size="4"> {{nome}}   </font>
+        
     </div>
-    </li>
-   </a>
+  </div>
+
+
+
+
+
+</a>
 {{else}}
 
 
@@ -220,9 +282,8 @@
 
 {{/each}}
 
+
+
 </div>
 
-
-
-
-    
+</body>

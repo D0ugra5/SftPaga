@@ -97,14 +97,10 @@
 </html>
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+    
 
     <style>
       .zoom {
@@ -122,32 +118,52 @@
 
 
 
-    
-
-      ul li {
-        display: inline-block;
+    .catia{
+              display: inline-block;
         margin-left: 10%;
+
     }
 
+ 
 
 
 
         hr {
-      margin-left: 6%;
-      float: left;
+              margin-left: 6%;
+              float: left;
 
-      border-color: rgb(218, 218, 218);
-      box-sizing: border-box;
-      width: 80%;
-    }
+              border-color: rgb(218, 218, 218);
+              box-sizing: border-box;
+              width: 80%;
+        }
 
-  
+
+       body{
+        background-color: rgb(227, 255, 230);
+      }
     </style>
 
 
-</head>
 <body>
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <center>
 
 
@@ -176,31 +192,36 @@
 <br>
 <br>
 <center>
-<h4>Parceiros</h4>
+<h1 style="font-family: 'Yanone Kaffeesatz', sans-serif;" >PARCEIROS</h1>
 </center>
 <br>
 <br>
   
 
+
+
 <!--  PATROCINADORES   -->
+
+
 <div>
  <ul>
    {{#each patrocinador}}
-     <li style="padding: 5%; margin-top:7%">
+    <a href="{{link}}" target="blank">
+     <li class="catia" style="padding: 5%; margin-top:7%">
               <div class="zoom">
     
-      <img src="/upload/{{imgPt}}"  width="130px">
+      <img src="/upload/{{imgPt}}"  width="150px" height="150px" >
 
-    <h4>{{nome}}></h2>
+    <h6>{{nome}}</h6>
 
     </div>
     </li>
-   
+   </a>
 {{else}}
 
 
 </ul>
-<h1>Nenhum Patrocinador encontrado</h1>
+<h1 style="font-family: 'Yanone Kaffeesatz', sans-serif;">Nenhum Patrocinador encontrado</h1>
 
 {{/each}}
 
@@ -210,6 +231,7 @@
 
 
     
+
 
     
     
@@ -222,4 +244,10 @@
 
 
 </body>
-</html>
+
+
+
+
+
+
+
