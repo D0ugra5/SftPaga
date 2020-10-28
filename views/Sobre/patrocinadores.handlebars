@@ -97,54 +97,90 @@
 </html>
 -->
 
-
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
     
 
     <style>
-      .zoom {
-        display: inline-block;
-        background-color: green;
-        transition: transform .2s; /* Animation */
-        width: 100px;
-        height: 10px;
-        margin: 0 auto;
-    }
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
-      .zoom:hover {
-        transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+}
+
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
 
 
-
-    .catia{
-              display: inline-block;
-        margin-left: 10%;
-
-    }
-
- 
-
-
-
-        hr {
-              margin-left: 6%;
-              float: left;
-
-              border-color: rgb(218, 218, 218);
-              box-sizing: border-box;
-              width: 80%;
-        }
-
-
-       body{
-        background-color: rgb(227, 255, 230);
-      }
-
-
-
-
+/*
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+  background-image: url('https://i.redd.it/b3esnz5ra34y.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  transition: 0.4s;
+}
+*/
 </style>
 <body>
   
@@ -190,7 +226,7 @@
 <br>
 <br>
 <center>
-<h1 style="font-family: 'Yanone Kaffeesatz', sans-serif;" >PARCEIROS</h1>
+<h1 style="font-family: 'Dosis', sans-serif; font-family: 'Josefin Sans', sans-serif;" >PARCEIROS</h1>
 </center>
 <br>
 <br>
@@ -210,8 +246,25 @@
 
 
 
+<div class="cards-list">
+       {{#each patrocinador}}
+       <a href="{{link}}" target="blank">
+    <div class="card 1" >
+      <div class="card_image" > 
+        <img  src="/upload/{{imgPt}}"/>
+      </div>
+      <div class="card_title title-white">
+        <div style="background-color: rgb(108, 238, 147);">
+        <h3 style="color: rgb(255, 255, 255);">{{nome}}</h3>
+        </div>
+      </div>
+    </div>
 
 
+</a>
+
+{{else}}
+</div>
 
 
 
@@ -222,21 +275,6 @@
 <!--  PATROCINADORES   -->
 
 
-<div>
- <ul>
-   {{#each patrocinador}}
-    <a href="{{link}}" target="blank">
-     <li class="catia" style="padding: 5%; margin-top:7%">
-              <div class="zoom">
-    
-      <img src="/upload/{{imgPt}}"  width="150px" height="150px" >
-
-    <h6 style="text-align: center;">{{nome}}</h6>
-
-    </div>
-    </li>
-   </a>
-{{else}}
 
 
 </ul>
