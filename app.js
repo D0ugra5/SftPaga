@@ -684,7 +684,7 @@ app.post("/calculaFrete", (req, res, next) => {
                     nVlAltura: "" + postagens.altura + "",
                     nVlLargura: "" + postagens.largura + "",
                     nCdServico: "04014  ",
-                    nVlDiametro: "" + postagens.diametro + "",
+                    nVlDiametro: "0" ,
                 };
 
                 calcularPrecoPrazo(args4).then((response2) => {
