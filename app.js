@@ -5,16 +5,18 @@ const handlebars = require('express-handlebars')
 //body parser
 const bodyParser = require('body-parser')
 //Models Postagem
-
 //armazenando express em uma variavel 
 const app = express()
+
+const mongoose = require("mongoose")
 //emportando rotas do admin
 const admin = require("./routes/admin")
+
+const GetPatrocinador = require("./routes/Patrocinados/GetPatrocinadores")
 // usar itens html localizados na pasta
 const path = require("path")
 
-//conexão moongose
-const mongoose = require("mongoose")
+
 //session 
 const session = require("express-session")
 //flash
@@ -28,8 +30,7 @@ const MongoStore = require('connect-mongo')(session)
 const usuarios = require("./routes/usuario")
 const router = require('./routes/usuario')
 //Patrocinadores
-require('./models/Patrocinador')
-const Patrocinador = mongoose.model("Patrocinador")
+
 //noticias
 require('./models/Noticias')
 const Noticias = mongoose.model("noticias")
@@ -57,6 +58,10 @@ MercadoPago.configure({
     access_token: "APP_USR-4383300227306599-092419-e351390db9b5810c819a30325b7e4e6c-636981516"
 
 })
+
+//Rotas
+app.use('/admin', admin);
+app.use("/Patricionador",GetPatrocinador );
 
 //nodemailer
 /*
@@ -196,6 +201,7 @@ var exphbs = require('express-handlebars');
 const { Store } = require('express-session')
 const { parseDate } = require('tough-cookie')
 const { RSA_NO_PADDING } = require('constants')
+const connectMongo = require('connect-mongo')
 var hbs = exphbs.create({
 
     // Specify helpers which are only registered on this instance.
@@ -225,9 +231,9 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }), hbs.engine)
 app.set('view engine', 'handlebars')
 //moogonse
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb+srv://DevsJabinho:Jabinho@13@cluster0.f46a1.mongodb.net/Cluster0?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-
-    console.log("Banco Conectado ")
+mongoose.connect("mongodb+srv://DevsJabinho:3lFFwv7UliQBlde4@cluster0.kk7ls.mongodb.net/Accp?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    
+    console.log("Banco conectado")
 
 
 }).catch((error) => {
@@ -251,8 +257,6 @@ app.use(express.static(path.join(__dirname, "views/")))
 
 
 
-//Rotas
-app.use('/admin', admin)
 
 
 
@@ -273,7 +277,7 @@ app.get("/", (req, res) => {
 app.get('/produto', (req, res) => {
 
     const cat = 2
-    var x  =  0 
+ 
  
 
     
@@ -502,9 +506,7 @@ app.get('/produto4', (req, res) => {
 
 
 
-app.get("/404", (req, res) => {
-    res.send("<h1>Error 404</h1>")
-})
+
 //Postagens
 app.get("/postagens/:id", (req, res) => {
 
@@ -577,15 +579,6 @@ app.get("/categorias/:id", (req, res) => {
                 res.render("Categoria/tiposC", { postagens: postagens, categoria:categoria, cao: cao }) 
 
 
-
-
-
-
-
-
-
-
-
             })
 
         } else {
@@ -609,14 +602,6 @@ app.get("/cep", (req, res) => {
 
     res.render("Cep/CalcCep")
 
-
-
-
-
-
-
-
-
 })
 
 
@@ -638,7 +623,6 @@ app.post("/calculaFrete", (req, res, next) => {
     var cart = new Cart(req.session.cart)
 
     var valorF = 0
-    var valort = 0
 
     var arr = []
 
@@ -932,7 +916,6 @@ app.post("/buscar", (req, res) => {
 
 
 
-    let reString = 'exemplo';
     let re = new RegExp(`${pesquisa}`,);
 
 
@@ -1032,24 +1015,6 @@ app.post("/resposta", (req, res) => {
 
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             } else {
 
             }
@@ -1068,9 +1033,7 @@ app.post("/resposta", (req, res) => {
 })
 
 app.post("/Pedido", async (req, res, next) => {
-    var ValorTotalFretee = req.body.ValorTotalFrete
     var ValorTotal2 = req.body.valorFinal
-    var Endereco = req.body.end
     var Numero = req.body.numero
     var complemento = req.body.complemento
     var observacoes = req.body.observacoes
